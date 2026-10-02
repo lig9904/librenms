@@ -2,7 +2,7 @@
 
 return [
     'title' => '设置',
-    'readonly' => '在 config.php 里被设定成只读，请由 config.php 移除它来启用。',
+    'readonly' => '在 config.php 里被设置成只读，请由 config.php 移除它来启用。',
     'groups' => [
         'alerting' => '告警',
         'api' => 'API',
@@ -120,13 +120,13 @@ return [
     'settings' => [
         'active_directory' => [
             'users_purge' => [
-                'description' => '保留未登入使用者于',
-                'help' => '设定使用者超过几天没有登入后，将会被 LibreNMS 自动删除。设为 0 表示不会删除，若使用者重新登入，将会重新建立账户。',
+                'description' => '保留未登录用户于',
+                'help' => '设置用户超过几天没有登录后，将会被 LibreNMS 自动删除。设为 0 表示不会删除，若用户重新登录，将会重新建立账户。',
             ],
         ],
         'addhost_alwayscheckip' => [
             'description' => '新增设备时检察是否 IP 重复',
-            'help' => '以 IP 加入主机时，会先检查此 IP 是否已存在于系统上，若有则不予加入。若是以主机名称方式加入时，则不会做此检查。若设定为 True 时，则以主机名称方式加入时亦做此检查，以避免加入重复主机的意外发生。',
+            'help' => '以 IP 加入主机时，会先检查此 IP 是否已存在于系统上，若有则不予加入。若是以主机名称方式加入时，则不会做此检查。若设置为 True 时，则以主机名称方式加入时亦做此检查，以避免加入重复主机的意外发生。',
         ],
         'alert_rule' => [
             'acknowledged_alerts' => [
@@ -172,19 +172,19 @@ return [
         ],
         'alert' => [
             'ack_until_clear' => [
-                'description' => '预设认可值到警报解除选项',
-                'help' => '预设认可值到警报解除',
+                'description' => '预设认可值到告警解除选项',
+                'help' => '预设认可值到告警解除',
             ],
             'admins' => [
-                'description' => '向管理员发送警报',
-                'help' => '管理员警报',
+                'description' => '向管理员发送告警',
+                'help' => '管理员告警',
             ],
             'default_copy' => [
-                'description' => '复制所有的邮件警报给预设连络人',
-                'help' => '复制所有的邮件警报给预设连络人',
+                'description' => '复制所有的邮件告警给预设连络人',
+                'help' => '复制所有的邮件告警给预设连络人',
             ],
             'default_if_none' => [
-                'description' => '无法在 WebUI 设定？',
+                'description' => '无法在 WebUI 设置？',
                 'help' => '如果没有找到其它连络人，请把邮件发送到预设连络人',
             ],
             'default_mail' => [
@@ -192,12 +192,12 @@ return [
                 'help' => '预设连络人邮件地址',
             ],
             'default_only' => [
-                'description' => '只发送警报给预设连络人',
-                'help' => '只发送警报给预设邮件连络人',
+                'description' => '只发送告警给预设连络人',
+                'help' => '只发送告警给预设邮件连络人',
             ],
             'disable' => [
-                'description' => '停用警报',
-                'help' => '停止产生警报',
+                'description' => '停用告警',
+                'help' => '停止产生告警',
             ],
             'acknowledged' => [
                 'description' => '发送已确认告警通知',
@@ -205,11 +205,11 @@ return [
             ],
             'fixed-contacts' => [
                 'description' => '更新联系电子邮件地址未得到认可',
-                'help' => '如果设为TRUE，任何对sysContact或用户电子邮件的更改在警报激活期间将不被采纳。',
+                'help' => '如果设为TRUE，任何对sysContact或用户电子邮件的更改在告警激活期间将不被采纳。',
             ],
             'globals' => [
-                'description' => '只发送警报给只读使用者',
-                'help' => '只发送警报给只读管理员',
+                'description' => '只发送告警给只读用户',
+                'help' => '只发送告警给只读管理员',
             ],
             'scheduled_maintenance_default_behavior' => [
                 'description' => '计划维护的默认行为',
@@ -221,13 +221,13 @@ return [
                 ],
             ],
             'syscontact' => [
-                'description' => '发送警报给 sysContact',
-                'help' => '发送警报邮件给 SNMP 中的 sysContact',
+                'description' => '发送告警给 sysContact',
+                'help' => '发送告警邮件给 SNMP 中的 sysContact',
             ],
             'transports' => [
                 'mail' => [
-                    'description' => '启用邮件警报',
-                    'help' => '启用以邮件传输警报',
+                    'description' => '启用邮件告警',
+                    'help' => '启用以邮件传输告警',
                 ],
             ],
             'tolerance_window' => [
@@ -235,12 +235,12 @@ return [
                 'help' => 'Tolerance window in seconds',
             ],
             'users' => [
-                'description' => '发送警报给一般使用者',
-                'help' => '警报通知一般使用者',
+                'description' => '发送告警给一般用户',
+                'help' => '告警通知一般用户',
             ],
         ],
         'alert_log_purge' => [
-            'description' => '警报记录项目大于',
+            'description' => '告警记录项目大于',
             'help' => 'Cleanup done by daily.sh',
         ],
         'discovery_on_reboot' => [
@@ -290,12 +290,12 @@ return [
             'help' => '默认情况下，禁止添加重复的sysName，以防止具有多个接口的设备被多次添加',
         ],
         'allow_unauth_graphs' => [
-            'description' => '允许未登入存取图表',
-            'help' => '允许在不登入情况下存取图表',
+            'description' => '允许未登录访问图表',
+            'help' => '允许在不登录情况下访问图表',
         ],
         'allow_unauth_graphs_cidr' => [
-            'description' => '允许指定网络存取图表',
-            'help' => '允许指定网络可以在未登入授权查看图表 (若未启用 允许未登入存取图表 则忽略此设定)',
+            'description' => '允许指定网络访问图表',
+            'help' => '允许指定网络可以在未登录授权查看图表 (若未启用 允许未登录访问图表 则忽略此设置)',
         ],
         'apps' => [
             'powerdns-recursor' => [
@@ -365,11 +365,11 @@ return [
             'help' => '用于选择组的 Active Directory LDAP 过滤器',
         ],
         'auth_ad_groups' => [
-            'description' => '群组存取权限',
-            'help' => '定义群组具有的存取权限与等级',
+            'description' => '群组访问权限',
+            'help' => '定义群组具有的访问权限与等级',
         ],
         'auth_ad_user_filter' => [
-            'description' => 'LDAP 使用者筛选',
+            'description' => 'LDAP 用户筛选',
             'help' => '用于选择用户的 Active Directory LDAP 过滤器',
         ],
         'auth_ldap_attr' => [
@@ -379,28 +379,28 @@ return [
             ],
         ],
         'auth_ldap_binddn' => [
-            'description' => '系结 DN (覆写系结使用者名称)',
+            'description' => '绑定 DN (覆写绑定用户名称)',
             'help' => '绑定用户的完整 DN',
         ],
         'auth_ldap_bindpassword' => [
-            'description' => '系结密码',
+            'description' => '绑定密码',
             'help' => '绑定用户的密码',
         ],
         'auth_ldap_binduser' => [
-            'description' => '系结使用者',
-            'help' => '当没有用户登录时（如警报、API等），用于查询LDAP服务器',
+            'description' => '绑定用户',
+            'help' => '当没有用户登录时（如告警、API等），用于查询LDAP服务器',
         ],
         'auth_ad_binddn' => [
-            'description' => '系结 DN (覆写系结使用者名称)',
+            'description' => '绑定 DN (覆写绑定用户名称)',
             'help' => '绑定用户的完整DN',
         ],
         'auth_ad_bindpassword' => [
-            'description' => '系结密码',
+            'description' => '绑定密码',
             'help' => '绑定用户的密码',
         ],
         'auth_ad_binduser' => [
-            'description' => '系结使用者名称',
-            'help' => '当没有用户登录时（例如，警报、API等），用于查询AD服务器',
+            'description' => '绑定用户名称',
+            'help' => '当没有用户登录时（例如，告警、API等），用于查询AD服务器',
         ],
         'auth_ad_starttls' => [
             'description' => '使用 STARTTLS',
@@ -412,7 +412,7 @@ return [
             ],
         ],
         'auth_ldap_cache_ttl' => [
-            'description' => 'LDAP 快取有效期',
+            'description' => 'LDAP 缓存有效期',
             'help' => '临时存储LDAP查询结果。可以提高速度，但数据可能不是最新的。',
         ],
         'auth_ldap_debug' => [
@@ -423,7 +423,7 @@ return [
             'description' => '邮件属性',
         ],
         'auth_ldap_group' => [
-            'description' => '存取群组 DN',
+            'description' => '访问群组 DN',
             'help' => '授予普通级别访问权限的组的专有名称。示例：cn=groupname,ou=groups,dc=example,dc=com',
         ],
         'auth_ldap_groupbase' => [
@@ -436,7 +436,7 @@ return [
         'auth_ldap_groupmembertype' => [
             'description' => '以下列方式寻找群组成员',
             'options' => [
-                'username' => '使用者名称',
+                'username' => '用户名称',
                 'fulldn' => 'Full DN (使用前缀和后缀)',
                 'puredn' => 'DN 搜寻 (使用 uid 属性搜寻)',
             ],
@@ -450,7 +450,7 @@ return [
             'help' => '用于连接服务器的端口。对于LDAP，端口应为389，对于LDAPS，端口应为636。',
         ],
         'auth_ldap_prefix' => [
-            'description' => '使用者前缀',
+            'description' => '用户前缀',
             'help' => '用于将用户名转换为可分辨名称（Distinguished Name）',
         ],
         'auth_ldap_server' => [
@@ -467,7 +467,7 @@ return [
             ],
         ],
         'auth_ldap_suffix' => [
-            'description' => '使用者后缀',
+            'description' => '用户后缀',
             'help' => '用于将用户名转换为可分辨名称（Distinguished Name）',
         ],
         'auth_ldap_timeout' => [
@@ -492,7 +492,7 @@ return [
         ],
         'auth_mechanism' => [
             'description' => '授权方法 (慎选!)',
-            'help' => "授权方法。注意，若设定错误将导致您无法登入系统。若真的发生，您可以手动将 config.php 的设定改回 \$config['auth_mechanism'] = 'mysql';",
+            'help' => "授权方法。注意，若设置错误将导致您无法登录系统。若真的发生，您可以手动将 config.php 的设置改回 \$config['auth_mechanism'] = 'mysql';",
             'options' => [
                 'mysql' => 'MySQL (预设)',
                 'active_directory' => 'Active Directory',
@@ -517,7 +517,7 @@ return [
             'help' => '此设置仅在您需要*强制*使用特定主机名/端口时才应设置。它将阻止从任何其他主机名访问Web界面。',
         ],
         'distributed_poller' => [
-            'description' => '启用分布式轮询 (需要额外设定)',
+            'description' => '启用分布式轮询 (需要额外设置)',
             'help' => '启用全系统分布式轮询功能。此功能旨在实现负载分担，而非远程轮询。您必须阅读以下文档以获取启用步骤：https://docs.librenms.org/Extensions/Distributed-Poller/',
         ],
         'distributed_poller_group' => [
@@ -572,7 +572,7 @@ return [
             'description' => 'SMTP 验证密码',
         ],
         'email_smtp_port' => [
-            'description' => 'SMTP 连接端口设定',
+            'description' => 'SMTP 连接端口设置',
         ],
         'email_smtp_secure' => [
             'description' => '启用 / 停用加密 (使用 TLS 或 SSL)',
@@ -583,10 +583,10 @@ return [
             ],
         ],
         'email_smtp_timeout' => [
-            'description' => 'SMTP 超时设定',
+            'description' => 'SMTP 超时设置',
         ],
         'email_smtp_username' => [
-            'description' => 'SMTP 验证使用者名称',
+            'description' => 'SMTP 验证用户名称',
         ],
         'email_user' => [
             'description' => '寄件者名称',
@@ -685,7 +685,7 @@ return [
                 'help' => 'Graylog中的时间以GMT存储，此设置将更改显示的时区。值必须为有效的PHP时区。',
             ],
             'username' => [
-                'description' => '使用者名称',
+                'description' => '用户名称',
                 'help' => '用户名，用于访问Graylog API。',
             ],
             'version' => [
@@ -711,8 +711,8 @@ return [
             'description' => 'ipmtool 路径',
         ],
         'login_message' => [
-            'description' => '登入讯息',
-            'help' => '显示于登入页面',
+            'description' => '登录讯息',
+            'help' => '显示于登录页面',
         ],
         'mono_font' => [
             'description' => 'Monospaced 字型',
@@ -733,7 +733,7 @@ return [
             'help' => '此值指定您的NFSen RRD文件存放的位置。',
         ],
         'nfsen_subdirlayout' => [
-            'description' => '设定 NfSen 子目录配置',
+            'description' => '设置 NfSen 子目录配置',
             'help' => '这必须与您在NfSen中设置的子目录结构相匹配。默认值为1。',
         ],
         'nfsen_last_max' => [
@@ -782,7 +782,7 @@ return [
             ],
             'features' => [
                 'versioning' => [
-                    'description' => '启用组态版本存取',
+                    'description' => '启用组态版本访问',
                     'help' => '启用Oxidized配置版本控制（需要git后端支持）',
                 ],
             ],
@@ -839,7 +839,7 @@ return [
         ],
         'public_status' => [
             'description' => '公开状态显示',
-            'help' => '允许不登入的情况下，显示设备的状态信息。',
+            'help' => '允许不登录的情况下，显示设备的状态信息。',
         ],
         'routes_max_number' => [
             'description' => '允许探索路由的最大路由数',
@@ -867,7 +867,7 @@ return [
             'help' => '由 daily.sh 脚本完成的日常清理任务',
         ],
         'rrd_rra' => [
-            'description' => 'RRD 格式设定',
+            'description' => 'RRD 格式设置',
             'help' => '这些设置无法在不删除现有 RRD 文件的情况下更改。但是，如果遇到性能问题，或者拥有非常快速的 I/O 系统且无需担心性能，理论上可以通过增加或减少每个 RRA 的大小来进行调整。',
         ],
         'rrdcached' => [
@@ -886,7 +886,7 @@ return [
             'help' => '缩短主机名至最大长度，但始终保留完整的子域名部分',
         ],
         'site_style' => [
-            'description' => '设定站点 css 样式',
+            'description' => '设置站点 css 样式',
             'options' => [
                 'blue' => '蓝色',
                 'dark' => '深色',
@@ -946,7 +946,7 @@ return [
                 'fields' => [
                     'authalgo' => '算法',
                     'authlevel' => '邓级',
-                    'authname' => '使用者名称',
+                    'authname' => '用户名称',
                     'authpass' => '密码',
                     'cryptoalgo' => '算法',
                     'cryptopass' => '算法密码',
@@ -1003,7 +1003,7 @@ return [
             'description' => '启用更新 ./daily.sh',
         ],
         'update_channel' => [
-            'description' => '设定更新频道',
+            'description' => '设置更新频道',
             'options' => [
                 'master' => '每日',
                 'release' => '每月',
@@ -1054,15 +1054,15 @@ return [
                 'help' => '为网页界面添加自定义 CSS。',
             ],
             'default_dashboard_id' => [
-                'description' => '预设信息广告牌',
-                'help' => '对于没有设定预设信息广告牌的使用者，所要显示的预设信息广告牌',
+                'description' => '预设仪表板',
+                'help' => '对于没有设置预设仪表板的用户，所要显示的预设仪表板',
             ],
             'dynamic_graphs' => [
                 'description' => '启用动态群组',
                 'help' => '启用动态图表，允许在图表上进行缩放和平移',
             ],
             'global_search_result_limit' => [
-                'description' => '设定搜寻结果笔数上限',
+                'description' => '设置搜寻结果笔数上限',
                 'help' => '全域搜寻结果限制',
             ],
             'global_search.arp' => [
@@ -1094,15 +1094,15 @@ return [
                 'help' => '显示堆叠图而不是倒置图',
             ],
             'graph_type' => [
-                'description' => '设定图表类型',
-                'help' => '设定预设图表类型',
+                'description' => '设置图表类型',
+                'help' => '设置预设图表类型',
                 'options' => [
                     'png' => 'PNG',
                     'svg' => 'SVG',
                 ],
             ],
             'min_graph_height' => [
-                'description' => '设定图表最小高度',
+                'description' => '设置图表最小高度',
                 'help' => '图表最小高度 (预设: 300)',
             ],
             'graph_stat_percentile_disable' => [
@@ -1594,7 +1594,7 @@ return [
             'help' => '当提供者允许（或不允许）Compare 动作时，运行（或跳过）ldap_compare。',
         ],
         'auth_ldap_userlist_filter' => [
-            'description' => '自订 LDAP 用户筛选器',
+            'description' => '自定义 LDAP 用户筛选器',
             'help' => '自定义 LDAP 过滤器。LDAP 目录包含数千名用户时，可用它限制返回结果的数量。',
         ],
         'auth_ldap_wildcard_ou' => [
@@ -1646,7 +1646,7 @@ return [
             'help' => '所列描述类型的端口会显示在 core ports 菜单项目下。详情请参阅「接口描述解析」文档。',
         ],
         'custom_descr' => [
-            'description' => '自订端口类型',
+            'description' => '自定义端口类型',
             'help' => '所列描述类型的端口会显示在 custom ports 菜单项目下。详情请参阅「接口描述解析」文档。',
         ],
         'custom_map' => [
@@ -1751,7 +1751,7 @@ return [
         ],
         'email_smtp_verifypeer' => [
             'description' => '验证对端证书',
-            'help' => '通过 TLS 连接 SMTP 服务器时不验证对端证书。',
+            'help' => '通过 TLS 连接 SMTP 服务器时验证对端证书。',
         ],
         'email_smtp_allowselfsigned' => [
             'description' => '允许自签名证书',
@@ -2437,20 +2437,26 @@ return [
     ],
     'twofactor' => [
         'description' => '启用双因素验证',
-        'help' => '启用内置的双因素认证。您必须为每个帐户设置以使其激活。',
+        'help' => '启用内置的双因素认证。您必须为每个账户设置以使其激活。',
     ],
     'units' => [
         'days' => '日',
-        'ms' => '微秒',
+        'ms' => '毫秒',
         'seconds' => '秒',
+        'percent' => '%',
     ],
     'validate' => [
         'boolean' => ':value 不是有效的布尔值',
+        'color' => ':value 不是有效的十六进制颜色代码',
         'email' => ':value 不是有效的电子邮件地址',
+        'float' => ':value 不是浮点数',
         'integer' => ':value 不是整数',
         'password' => '密码不正确',
         'select' => ':value 不是允许的值',
         'text' => ':value 不允许使用',
         'array' => '格式无效',
+        'password-array' => '格式无效',
+        'executable' => ':value 不是有效的可执行文件',
+        'directory' => ':value 不是有效的目录',
     ],
 ];
