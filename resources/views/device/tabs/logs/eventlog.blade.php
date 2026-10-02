@@ -26,18 +26,31 @@
     </x-device.page>
 @endsection
 
+@php
+    $eventlogUiLabels = [
+        'bootgrid' => [
+            'all' => __('All'),
+            'infos' => __('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries'),
+            'loading' => __('Loading...'),
+            'noResults' => __('No results found!'),
+            'refresh' => __('Refresh'),
+            'search' => __('Search'),
+        ],
+        'device' => __('Device'),
+        'allDevices' => __('All Devices'),
+        'type' => __('Type'),
+        'allTypes' => __('All types'),
+        'filter' => __('Filter'),
+        'allTypesSelect' => __('All Types'),
+    ];
+@endphp
+
 @section('scripts')
     <script>
+        var eventlogUiLabels = @json($eventlogUiLabels);
         var eventlog_grid = $("#eventlog").bootgrid({
             ajax: true,
-            labels: {{ Js::from([
-                'all' => __('All'),
-                'infos' => __('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries'),
-                'loading' => __('Loading...'),
-                'noResults' => __('No results found!'),
-                'refresh' => __('Refresh'),
-                'search' => __('Search'),
-            ]) }},
+            labels: eventlogUiLabels.bootgrid,
             rowCount: [50, 100, 250, -1],
             post: function () {
                 return {
@@ -54,21 +67,21 @@
 
             @if($filter_device)
                 '<div class="form-group">' +
-                '<label><strong>' + {{ Js::from(__('Device')) }} + '&nbsp;&nbsp;</strong></label>' +
+                '<label><strong>' + eventlogUiLabels.device + '&nbsp;&nbsp;</strong></label>' +
                 '<select name="device" id="device" class="form-control">' +
-                '<option value="">' + {{ Js::from(__('All Devices')) }} + '</option>' +
+                '<option value="">' + eventlogUiLabels.allDevices + '</option>' +
                 '<option value=$device->device_id>" . $device->displayName() . "</option>' +
                 '</select>' +
                 '</div>&nbsp;&nbsp;&nbsp;&nbsp;' +
             @endif
 
-            '<div class="form-group"><label><strong>' + {{ Js::from(__('Type')) }} + '&nbsp;&nbsp;</strong></label>' +
+            '<div class="form-group"><label><strong>' + eventlogUiLabels.type + '&nbsp;&nbsp;</strong></label>' +
             '<select name="eventtype" id="eventtype" class="form-control input-sm">' +
-                '<option value="">' + {{ Js::from(__('All types')) }} + '</option>' +
+                '<option value="">' + eventlogUiLabels.allTypes + '</option>' +
                 '<option value=\"' + @json($eventtype) + '\">' + @json($eventtype) + '</option>' +
             '</select>' +
             '</div>&nbsp;&nbsp;' +
-            '<button type="submit" class="btn btn-default">' + {{ Js::from(__('Filter')) }} + '</button>' +
+            '<button type="submit" class="btn btn-default">' + eventlogUiLabels.filter + '</button>' +
             '</form>' +
             '</div>'
         );
@@ -81,6 +94,6 @@
                 term: params.term,
                 page: params.page || 1
             }
-        }, @json($eventtype), {{ Js::from(__('All Types')) }});
+        }, @json($eventtype), eventlogUiLabels.allTypesSelect);
     </script>
 @endsection
