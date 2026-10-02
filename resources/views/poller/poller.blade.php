@@ -23,7 +23,7 @@
                 <td>{{ $poller['poller_name'] }}</td>
                 <td>@include('poller.details', ['details' => $poller->poller_details])</td>
                 <td>{{ $poller['devices'] }}</td>
-                <td>{{ $poller['time_taken'] }} Seconds</td>
+                <td>{{ $poller['time_taken'] }} {{ __('Seconds') }}</td>
                 <td>{{ \LibreNMS\Util\Time::format($poller['last_polled'], 'compact') }}</td>
                 <td>
                     @can('delete', $poller)
