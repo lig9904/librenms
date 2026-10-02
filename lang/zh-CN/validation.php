@@ -2,6 +2,8 @@
 
 return [
 
+    'array_keys_not_empty' => ':attribute 包含空的数组键。',
+
     /*
     |--------------------------------------------------------------------------
     | Validation Language Lines
@@ -198,8 +200,28 @@ return [
         'show_less' => '显示较少',
         'validate' => '验证',
         'validating' => '正在验证',
+        'skipped' => '已跳过',
+        'run' => '运行',
     ],
     'validations' => [
+        'groups' => [
+            'configuration' => '配置',
+            'database' => '数据库',
+            'dependencies' => '依赖项',
+            'disk' => '磁盘',
+            'distributedpoller' => '分布式轮询器',
+            'mail' => '邮件',
+            'php' => 'PHP',
+            'poller' => '轮询器',
+            'programs' => '程序',
+            'python' => 'Python',
+            'rrd' => 'RRD',
+            'scheduler' => '调度器',
+            'system' => '系统',
+            'updates' => '更新',
+            'user' => '用户',
+            'webserver' => 'Web 服务器',
+        ],
         'rrd' => [
             'CheckRrdVersion' => [
                 'fail' => 'rrdtool 版本 :installed_version 太旧，LibreNMS 需要最低版本为 1.5.5',
@@ -217,8 +239,24 @@ return [
                 'fail_mode' => '您的RRD目录权限未设置为0775',
                 'ok' => 'rrd_dir可写',
             ],
+            'CheckRrdStep' => [
+                'fail' => '部分 RRD 文件的步长不正确。:bad/:total',
+                'fail_bad_files' => '读取 RRD 文件时出错。:bad/:total',
+                'list_bad_step_title' => '步长不正确的 RRD 文件',
+                'list_bad_files_title' => '运行 rrdinfo 时出错的文件',
+                'list_bad_step_item' => ':file：步长为 :step，但应为 :target',
+                'ok' => '全部 :total 个 RRD 文件的步长均正确。',
+                'timeout' => 'RRD 文件检查耗时过长，已跳过。请运行 :command 检查并修复所有 RRD 文件。',
+            ],
         ],
         'database' => [
+            'CheckDatabaseConnected' => [
+                'fail' => '无法连接数据库',
+                'fail_connect' => '无法连接数据库。请确认数据库服务器正在运行，且连接信息正确。请检查环境变量或 :env_file 中的 DB_HOST、DB_PORT 和 DB_NAME。',
+                'fail_access' => '已连接数据库，但当前用户没有访问权限。请运行 SQL 查询授予权限。如果数据库位于远程主机，请将 localhost 改为本地主机名。',
+                'fail_auth' => '数据库凭据不正确。请检查环境变量或 :env_file 中的 DB_USERNAME 和 DB_PASSWORD。',
+                'ok' => '数据库已连接',
+            ],
             'CheckDatabaseTableNamesCase' => [
                 'fail' => '您在mysql配置中将lower_case_table_names设置为1或true。',
                 'fix' => '在您的mysql配置文件的[mysqld]部分设置lower_case_table_names=0。',
@@ -295,6 +333,11 @@ return [
                 'bad_driver' => '使用:driver进行锁定，您应设置CACHE_STORE=redis',
                 'ok' => 'Redis功能正常',
                 'unavailable' => 'Redis不可用',
+            ],
+            'CheckSchedules' => [
+                'dispatcher_poll_fast' => '调度服务的轮询频率高于 RRD 步长。如果未将数据保存到其他时序数据库，这会增加服务器负载，因为 RRD 文件无法存储如此细粒度的轮询数据。',
+                'dispatcher_poll_slow' => '调度服务的轮询频率低于 RRD 步长。RRD 文件要求更频繁地接收数据，因此图表可能出错。建议将 service_poller_frequency 设为 null，使轮询频率与 RRD 步长一致。',
+                'no_errors' => '轮询频率未发现错误。',
             ],
         ],
     ],

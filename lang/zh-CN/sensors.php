@@ -150,6 +150,12 @@ return [
         'unit' => 'dBmV',
         'unit_long' => '分贝毫伏',
     ],
+    'printer-supply' => [
+        'short' => '打印机',
+        'long' => '打印机耗材',
+        'unit' => '%',
+        'unit_long' => '百分比',
+    ],
     'bitrate' => [
         'short' => '比特率',
         'long' => '比特率',
@@ -172,6 +178,8 @@ return [
         'long' => '温度',
         'unit' => '°C',
         'unit_long' => '摄氏度',
+        'unit_f' => '°F',
+        'unit_long_f' => '华氏度',
     ],
     'voltage' => [
         'short' => '电压',
@@ -190,5 +198,11 @@ return [
         'long' => '百分比',
         'unit' => '%',
         'unit_long' => '百分比',
+    ],
+    'signal_loss' => [
+        'short' => 'SL',
+        'long' => '信号损耗',
+        'unit' => 'dB',
+        'unit_long' => '分贝',
     ],
 ];

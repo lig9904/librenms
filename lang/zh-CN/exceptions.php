@@ -1,6 +1,11 @@
 <?php
 
 return [
+    'host_name_empty' => '主机名为空',
+    'invalid_auth_mechanism' => [
+        'title' => '身份验证机制无效',
+        'message' => '未配置有效的身份验证机制。请检查 auth_mechanism 设置。',
+    ],
     'database_connect' => [
         'title' => '连接数据库错误',
     ],

@@ -1,6 +1,17 @@
 <?php
 
 return [
+    'yes' => '是',
+    'no' => '否',
+    'port' => '端口',
+    'state' => '状态',
+    'enable' => '启用',
+    'path_cost' => '路径开销',
+    'designated_root_short' => '指定根桥',
+    'designated_cost' => '指定路径开销',
+    'designated_bridge' => '指定桥',
+    'designated_port' => '指定端口',
+    'forward_transitions' => '转发状态转换次数',
     'stp_info' => 'STP 实例信息',
     'stp_ports' => 'STP 端口',
     'vlan' => '虚拟局域网 (VLAN)',
