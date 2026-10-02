@@ -7,6 +7,9 @@
             <script src="{{ asset('js/vis-network.min.js') }}"></script>
             <script src="{{ asset('js/vis-data.min.js') }}"></script>
             <script src="{{ asset('js/vis-timeline-graph2d.min.js') }}"></script>
+            @if (app()->getLocale() === 'zh-CN')
+                <script src="{{ asset('js/vis-zh-cn.js') }}"></script>
+            @endif
             <div id="visualization" style="margin-bottom: -120px;"></div>
             <script type="text/javascript">
                 var container = document.getElementById('visualization');
@@ -31,6 +34,9 @@
                     zoomMax: {{ $data['zoom_max'] }},
                     orientation: 'top'
                 };
+                @if (app()->getLocale() === 'zh-CN')
+                    options.moment = window.visMomentZhCn;
+                @endif
                 var graph2d = new vis.Graph2d(container, items, groups, options);
             </script>
         </div>

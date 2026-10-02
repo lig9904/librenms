@@ -47,6 +47,9 @@ $query = "SELECT DATE_FORMAT(time_logged, '" . \App\Facades\LibrenmsConfig::get(
 <script src="js/vis-network.min.js"></script>
 <script src="js/vis-data.min.js"></script>
 <script src="js/vis-timeline-graph2d.min.js"></script>
+<?php if (app()->getLocale() === 'zh-CN') { ?>
+<script src="js/vis-zh-cn.js"></script>
+<?php } ?>
 <div id="visualization" style="margin-bottom: -120px;"></div>
 <script type="text/javascript">
 
@@ -109,6 +112,9 @@ foreach ($groups as $group) {
         ?>,
         orientation:'top'
     };
+    <?php if (app()->getLocale() === 'zh-CN') { ?>
+    options.moment = window.visMomentZhCn;
+    <?php } ?>
     var graph2d = new vis.Graph2d(container, items, groups, options);
 
 </script>
