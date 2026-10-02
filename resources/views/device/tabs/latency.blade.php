@@ -21,9 +21,9 @@
             <div class="tab-content">
                 @foreach($data['smokeping_tabs'] as $direction)
                     <div class="tab-pane fade in @if($loop->first) active @endif" id="{{ $direction }}">
-                        <x-graph-row :type="'device_smokeping_' . $direction . '_all_avg'" title="Average" :device="$device" columns="responsive"></x-graph-row>
+                        <x-graph-row :type="'device_smokeping_' . $direction . '_all_avg'" title="{{ __('Average') }}" :device="$device" columns="responsive"></x-graph-row>
                     </div>
-                    <div class="row"><x-graph-row :type="'device_smokeping_' . $direction . '_all'" title="Aggregate" :device="$device" columns="responsive"></x-graph-row>
+                    <div class="row"><x-graph-row :type="'device_smokeping_' . $direction . '_all'" title="{{ __('Aggregate') }}" :device="$device" columns="responsive"></x-graph-row>
                         @foreach($data['smokeping']->otherGraphs($direction) as $info)
                             <x-graph-row :type="$info['graph']['type']" :device="$info['graph']['device']" columns="responsive">
                                 <x-slot name="title"><x-device-link device="$info['device']" /></x-slot>

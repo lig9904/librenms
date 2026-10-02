@@ -34,6 +34,14 @@
     <script>
         var grid = $("#sensors").bootgrid({
             ajax: true,
+            labels: @js([
+                'all' => __('All'),
+                'infos' => __('Showing ' . '{' . '{ctx.start}} to ' . '{' . '{ctx.end}} of ' . '{' . '{ctx.total}} entries'),
+                'loading' => __('Loading...'),
+                'noResults' => __('No results found!'),
+                'refresh' => __('Refresh'),
+                'search' => __('Search'),
+            ]),
             rowCount: [50, 100, 250, -1],
             post: function ()
             {

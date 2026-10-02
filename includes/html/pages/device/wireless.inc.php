@@ -20,7 +20,7 @@ $wireless_link_array = [
 
 print_optionbar_start();
 
-echo "<span style='font-weight: bold;'>Wireless</span> &#187; ";
+echo "<span style='font-weight: bold;'>" . __('Wireless') . '</span> &#187; ';
 
 if (empty($vars['metric'])) {
     $vars['metric'] = 'overview';
@@ -28,7 +28,7 @@ if (empty($vars['metric'])) {
 
 $sep = '';
 echo '<span' . ($vars['metric'] == 'overview' ? ' class="pagemenu-selected"' : '') . '>';
-echo generate_link('Overview', $wireless_link_array, ['metric' => 'overview']);
+echo generate_link(__('Overview'), $wireless_link_array, ['metric' => 'overview']);
 echo '</span>';
 
 foreach ($sensor_classes as $type) {
@@ -108,4 +108,4 @@ if ($vars['metric'] == 'overview') {
     }
 }
 
-$pagetitle[] = 'Wireless';
+$pagetitle[] = __('Wireless');

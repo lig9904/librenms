@@ -15,7 +15,7 @@
  * @author     LibreNMS Contributors
 */
 
-$pagetitle[] = 'Services';
+$pagetitle[] = __('Services');
 
 require_once 'includes/html/modal/new_service.inc.php';
 require_once 'includes/html/modal/delete_service.inc.php';
@@ -24,21 +24,21 @@ require_once 'includes/html/modal/delete_service.inc.php';
     <div class="row">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <span style="font-weight: bold;">Services</span> &#187;
+                <span style="font-weight: bold;"><?php echo e(__('Services')); ?></span> &#187;
 
                 <?php
                 $menu_options = [
-                    'basic' => 'Basic',
+                    'basic' => __('Basic'),
                 ];
 
                 $vars['view'] ??= 'basic';
                 $vars['state'] ??= 'all';
 
                 $status_options = [
-                    'all' => 'All',
-                    'ok' => 'Ok',
-                    'warning' => 'Warning',
-                    'critical' => 'Critical',
+                    'all' => __('All'),
+                    'ok' => __('Ok'),
+                    'warning' => __('Warning'),
+                    'critical' => __('Critical'),
                 ];
 
                 // The menu option - on the left
@@ -145,16 +145,16 @@ require_once 'includes/html/modal/delete_service.inc.php';
                     foreach ($services as $service) {
                         if ($service['service_status'] == '2') {
                             $label = 'label-danger';
-                            $title = 'CRITICAL';
+                            $title = __('Critical');
                         } elseif ($service['service_status'] == '1') {
                             $label = 'label-warning';
-                            $title = 'WARNING';
+                            $title = __('Warning');
                         } elseif ($service['service_status'] == '0') {
                             $label = 'label-success';
-                            $title = 'OK';
+                            $title = __('Ok');
                         } else {
                             $label = 'label-info';
-                            $title = 'UNKNOWN';
+                            $title = __('Unknown');
                         }
 
                         $service_iteration++;
@@ -165,14 +165,14 @@ require_once 'includes/html/modal/delete_service.inc.php';
                             echo '<table class="table table-hover table-condensed">';
                             echo '<thead>';
                             echo '<th style="width:1%;max-width:1%;"></th>';
-                            echo '<th style="width:10%;max-width: 10%;">Name</th>';
-                            echo '<th style="width:10%;max-width: 10%;">Check Type</th>';
-                            echo '<th style="width:10%;max-width: 15%;">Remote Host</th>';
-                            echo '<th >Message</th>';
-                            echo '<th style="width:16%;max-width: 25%;">Description</th>';
-                            echo '<th style="width:15%;max-width: 15%;">Last Changed</th>';
-                            echo '<th style="width:2%;max-width: 2%;">Alert</th>';
-                            echo '<th style="width:4%;max-width: 4%;">Status</th>';
+                            echo '<th style="width:10%;max-width: 10%;">' . e(__('Name')) . '</th>';
+                            echo '<th style="width:10%;max-width: 10%;">' . e(__('Check Type')) . '</th>';
+                            echo '<th style="width:10%;max-width: 15%;">' . e(__('Remote Host')) . '</th>';
+                            echo '<th >' . e(__('Message')) . '</th>';
+                            echo '<th style="width:16%;max-width: 25%;">' . e(__('Description')) . '</th>';
+                            echo '<th style="width:15%;max-width: 15%;">' . e(__('Last Changed')) . '</th>';
+                            echo '<th style="width:2%;max-width: 2%;">' . e(__('Alert')) . '</th>';
+                            echo '<th style="width:4%;max-width: 4%;">' . e(__('Status')) . '</th>';
                             echo '<th style="width:100px;max-width: 100px;"></th>';
                             echo '</thead>';
                         }
@@ -186,7 +186,7 @@ require_once 'includes/html/modal/delete_service.inc.php';
                         echo '<td>' . nl2br(\LibreNMS\Util\Clean::html($service['service_ip'], [])) . '</td>';
                         echo '<td>' . nl2br(\LibreNMS\Util\Clean::html($service['service_message'], [])) . '</td>';
                         echo '<td>' . nl2br(\LibreNMS\Util\Clean::html($service['service_desc'], [])) . '</td>';
-                        echo '<td>' . (isset($service['service_changed']) ? \LibreNMS\Util\Time::formatInterval(time() - $service['service_changed']) : 'Waiting for first service check') . '</td>';
+                        echo '<td>' . (isset($service['service_changed']) ? \LibreNMS\Util\Time::formatInterval(time() - $service['service_changed']) : e(__('Waiting for first service check'))) . '</td>';
 
                         $service_checked = '';
                         $ico = 'pause';
@@ -221,10 +221,10 @@ require_once 'includes/html/modal/delete_service.inc.php';
 
                         echo '<td>';
                         if (Gate::allows('service.update')) {
-                            echo "<button type='button' class='btn btn-primary btn-sm' aria-label='Edit' data-toggle='modal' data-target='#create-service' data-service_id='{$service['service_id']}' name='edit-service'><i class='fa fa-pencil' aria-hidden='true'></i></button>";
+                            echo "<button type='button' class='btn btn-primary btn-sm' aria-label='" . e(__('Edit')) . "' data-toggle='modal' data-target='#create-service' data-service_id='{$service['service_id']}' name='edit-service'><i class='fa fa-pencil' aria-hidden='true'></i></button>";
                         }
                         if (Gate::allows('service.delete')) {
-                            echo "<button type='button' class='btn btn-danger btn-sm' aria-label='Delete' data-toggle='modal' data-target='#confirm-delete' data-service_id='{$service['service_id']}' name='delete-service'><i class='fa fa-trash' aria-hidden='true'></i></button>";
+                            echo "<button type='button' class='btn btn-danger btn-sm' aria-label='" . e(__('Delete')) . "' data-toggle='modal' data-target='#confirm-delete' data-service_id='{$service['service_id']}' name='delete-service'><i class='fa fa-trash' aria-hidden='true'></i></button>";
                         }
                         echo '</td></tr>';
 
@@ -278,7 +278,7 @@ $('input[name="service_status"]').on('switchChange.bootstrapSwitch',  function(e
                 }
             },
                 error: function() {
-                    $("#message").html('<div class="alert alert-info">This service could not be updated.</div>');
+                    $("#message").html('<div class="alert alert-info">' + <?php echo json_encode(__('This service could not be updated.'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?> + '</div>');
                     $('#'+service_id).bootstrapSwitch('toggleState',true );
                 }
     });

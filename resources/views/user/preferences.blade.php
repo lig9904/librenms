@@ -96,7 +96,7 @@
                 <label for="timezone" class="col-sm-4 control-label">{{ __('Timezone') }}</label>
                 <div class="col-sm-4">
                     <select class="form-control ajax-select" name="timezone" data-pref="timezone" data-previous="{{ $timezone }}">
-                        <option value="default">Browser Timezone</option>
+                        <option value="default">{{ __('Browser Timezone') }}</option>
                         @foreach(timezone_identifiers_list() as $tz)
                             <option value="{{ $tz }}" @if($timezone == $tz) selected @endif>{{ $tz }}</option>
                         @endforeach

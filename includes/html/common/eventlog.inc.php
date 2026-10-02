@@ -19,11 +19,11 @@ $common_output[] = '
     <table id="eventlog" class="table table-hover table-condensed table-striped">
         <thead>
             <tr>
-                <th data-column-id="datetime" data-order="desc">Timestamp</th>
-                <th data-column-id="type">Type</th>
-                <th data-column-id="device_id">Hostname</th>
-                <th data-column-id="message">Message</th>
-                <th data-column-id="username">User</th>
+                <th data-column-id="datetime" data-order="desc">' . e(__('Timestamp')) . '</th>
+                <th data-column-id="type">' . e(__('Type')) . '</th>
+                <th data-column-id="device_id">' . e(__('Hostname')) . '</th>
+                <th data-column-id="message">' . e(__('Message')) . '</th>
+                <th data-column-id="username">' . e(__('User')) . '</th>
             </tr>
         </thead>
     </table>
@@ -32,6 +32,14 @@ $common_output[] = '
 
 var eventlog_grid = $("#eventlog").bootgrid({
     ajax: true,
+    labels: ' . json_encode([
+        'all' => __('All'),
+        'infos' => __('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries'),
+        'loading' => __('Loading...'),
+        'noResults' => __('No results found!'),
+        'refresh' => __('Refresh'),
+        'search' => __('Search'),
+    ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ',
     rowCount: [50, 100, 250, -1],
     post: function ()
     {

@@ -27,7 +27,7 @@
                         <td>{{ $log->datetime }}</td>
                         <td>{{ $log->user }}</td>
                         <td>{{ $log->address }}</td>
-                        <td>{{ $log->result }}</td>
+                        <td>{{ __($log->result) }}</td>
                     </tr>
                 @endforeach
             </tbody>
@@ -39,7 +39,16 @@
 @section('scripts')
 <script>
     var authlog_grid = $("#authlog");
-    authlog_grid.bootgrid();
+    authlog_grid.bootgrid({
+        labels: @js([
+            'all' => __('All'),
+            'infos' => __('Showing ' . '{' . '{ctx.start}} to ' . '{' . '{ctx.end}} of ' . '{' . '{ctx.total}} entries'),
+            'loading' => __('Loading...'),
+            'noResults' => __('No results found!'),
+            'refresh' => __('Refresh'),
+            'search' => __('Search'),
+        ]),
+    });
     authlog_grid.css('display', 'table'); // done loading, show
 </script>
 @endsection

@@ -32,15 +32,15 @@ use LibreNMS\Alerting\QueryBuilderParser;
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h5 class="modal-title" id="search_rule">Alert rule collection</h5>
+                <h5 class="modal-title" id="search_rule"><?= __('Alert rule collection') ?></h5>
             </div>
             <div class="modal-body">
                 <div class="table-responsive">
                     <table id="rule_collection" class="table table-condensed table-hover">
                         <thead>
                             <tr>
-                                <th data-column-id="name" data-width="200px">Name</th>
-                                <th data-column-id="rule">Rule</th>
+                                <th data-column-id="name" data-width="200px"><?= __('Name') ?></th>
+                                <th data-column-id="rule"><?= __('Rule') ?></th>
                                 <td data-column-id="action" data-formatter="action"></td>
                             </tr>
                         </thead>
@@ -66,7 +66,7 @@ use LibreNMS\Alerting\QueryBuilderParser;
                             caseSensitive: false,
                             formatters: {
                                 "action": function (column, row) {
-                                    return "<button type=\"button\" id=\"rule_from_collection\" name=\"rule_from_collection\" data-rule_id=\"" + row.action + "\" class=\"btn btn-sm btn-primary rule_from_collection\">Select</button";
+                                    return "<button type=\"button\" id=\"rule_from_collection\" name=\"rule_from_collection\" data-rule_id=\"" + row.action + "\" class=\"btn btn-sm btn-primary rule_from_collection\"><?= __('Select') ?></button";
                                 }
                             },
                             templates: {

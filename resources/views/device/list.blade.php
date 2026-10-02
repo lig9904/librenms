@@ -27,18 +27,26 @@
 
     var grid = $("#devices").bootgrid({
         ajax: true,
+        labels: @js([
+            'all' => __('All'),
+            'infos' => __('Showing ' . '{' . '{ctx.start}} to ' . '{' . '{ctx.end}} of ' . '{' . '{ctx.total}} entries'),
+            'loading' => __('Loading...'),
+            'noResults' => __('No results found!'),
+            'refresh' => __('Refresh'),
+            'search' => __('Search'),
+        ]),
         rowCount: [50, 100, 250, -1],
         columnSelection: true,
         formatters: {
             "status": function (column, row) {
-                return "<span title=\"Status: " + row.status + " : " + row.extra.replace(/^label-/,'') + "\" class=\"{{ $detailed ? 'alert-status' : 'alert-status-small' }} " + row.extra + "\"></span>";
+                return "<span title=\"" + @js(__('Status')) + ": " + row.status + " : " + row.extra.replace(/^label-/,'') + "\" class=\"{{ $detailed ? 'alert-status' : 'alert-status-small' }} " + row.extra + "\"></span>";
             },
             "icon": function (column, row) {
                 return "<span class=\"device-table-icon tw:dark:bg-gray-50 tw:dark:rounded-lg tw:dark:p-2\">" + row.icon + "</span>";
             },
             "maintenance": function (column, row) {
                 if (row.maintenance) {
-                    return "<span title=\"Scheduled Maintenance\" class=\"glyphicon glyphicon-wrench\"></span>";
+                    return "<span title=\"" + @js(__('Scheduled Maintenance')) + "\" class=\"glyphicon glyphicon-wrench\"></span>";
                 }
                 return '';
             },

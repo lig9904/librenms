@@ -61,7 +61,7 @@
                                 <strong><i class="fa fa-bell-o"></i>&nbsp;{{ $notif->title }}</strong>
                                 <span class="pull-right">
                                     @if ($notif->user_id != Auth::id())
-                                        <code>Sticky by {{ $notif->sticky_username ?? 'Unknown' }}</code>
+                                        <code>{{ __('Sticky by') }} {{ $notif->sticky_username ?? __('Unknown') }}</code>
                                     @else
                                         <button type="button" class="btn btn-primary fa fa-bell-slash-o" @click="unstick({{ $notif->notifications_id }}, $event)" title="{{ __('Remove Sticky') }}" style="margin-top:-10px;"></button>
                                     @endif
@@ -73,7 +73,7 @@
                         <div class="col-md-12">
                             <blockquote{!! $notif->severity == 2 ? ' style="border-color: darkred;"' : '' !!}>
                                 <p>{!! \LibreNMS\Util\Clean::html($notif->body, ['HTML.Allowed' => 'br']) !!}</p>
-                                <footer>{{ $notif->datetime }} | Source: <code>{{ $notif->source }}</code></footer>
+                                <footer>{{ $notif->datetime }} | {{ __('Source') }}: <code>{{ $notif->source }}</code></footer>
                             </blockquote>
                         </div>
                     </div>

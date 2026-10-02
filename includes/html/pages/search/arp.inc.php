@@ -1,26 +1,42 @@
 <div class="panel panel-default panel-condensed">
     <div class="panel-heading">
-        <strong>ARP Entries</strong>
+        <strong><?php echo e(__('ARP Entries')); ?></strong>
     </div>
     <table id="arp-search" class="table table-hover table-condensed table-striped">
         <thead>
             <tr>
-                <th data-column-id="mac_address" data-formatter="tooltip">MAC Address</th>
-                <th data-column-id="mac_oui" data-sortable="false" data-visible="<?php echo \App\Facades\LibrenmsConfig::get('mac_oui.enabled') ? 'true' : 'false' ?>" data-formatter="tooltip">Vendor</th>
-                <th data-column-id="ipv4_address" data-formatter="tooltip">IP Address</th>
-                <th data-column-id="hostname" data-order="asc">Device</th>
-                <th data-column-id="interface">Interface</th>
-                <th data-column-id="remote_device" data-sortable="false">Remote device</th>
-                <th data-column-id="remote_interface" data-sortable="false">Remote interface</th>
+                <th data-column-id="mac_address" data-formatter="tooltip"><?php echo e(__('MAC Address')); ?></th>
+                <th data-column-id="mac_oui" data-sortable="false" data-visible="<?php echo \App\Facades\LibrenmsConfig::get('mac_oui.enabled') ? 'true' : 'false' ?>" data-formatter="tooltip"><?php echo e(__('Vendor')); ?></th>
+                <th data-column-id="ipv4_address" data-formatter="tooltip"><?php echo e(__('IP Address')); ?></th>
+                <th data-column-id="hostname" data-order="asc"><?php echo e(__('Device')); ?></th>
+                <th data-column-id="interface"><?php echo e(__('Interface')); ?></th>
+                <th data-column-id="remote_device" data-sortable="false"><?php echo e(__('Remote device')); ?></th>
+                <th data-column-id="remote_interface" data-sortable="false"><?php echo e(__('Remote interface')); ?></th>
             </tr>
         </thead>
     </table>
 </div>
 
 <script>
+var searchLabels = <?php echo json_encode([
+    'allDevices' => __('All Devices'),
+    'macAddress' => __('MAC Address'),
+    'ipAddress' => __('IP Address'),
+    'address' => __('Address'),
+    'search' => __('Search'),
+    'bootgrid' => [
+        'all' => __('All'),
+        'infos' => __('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries'),
+        'loading' => __('Loading...'),
+        'noResults' => __('No results found!'),
+        'refresh' => __('Refresh'),
+        'search' => __('Search'),
+    ],
+], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
 
 var grid = $("#arp-search").bootgrid({
     ajax: true,
+    labels: searchLabels.bootgrid,
     rowCount: [50, 100, 250, -1],
     templates: {
         header: "<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\">"+
@@ -29,7 +45,7 @@ var grid = $("#arp-search").bootgrid({
                 "<?php echo addslashes(csrf_field()) ?>"+
                 "<div class=\"form-group\">"+
                 "<select name=\"device_id\" id=\"device_id\" class=\"form-control input-sm\">"+
-                "<option value=\"\">All Devices</option>"+
+                "<option value=\"\">" + searchLabels.allDevices + "</option>"+
 <?php
 
             // Select the devices only with ARP tables
@@ -68,7 +84,7 @@ if ($searchby != 'ip') {
 }
 ?>
 
-                ">MAC Address</option>"+
+                ">" + searchLabels.macAddress + "</option>"+
                 "<option value=\"ip\" "+
 <?php
 if ($searchby == 'ip') {
@@ -76,7 +92,7 @@ if ($searchby == 'ip') {
 }
 ?>
 
-                ">IP Address</option>"+
+                ">" + searchLabels.ipAddress + "</option>"+
                 "</select>"+
                 "</div>"+
                 "<div class=\"form-group\">"+
@@ -85,9 +101,9 @@ if ($searchby == 'ip') {
 echo '"' . htmlspecialchars((string) $searchPhrase) . '"+';
 ?>
 
-                "\" class=\"form-control input-sm\" placeholder=\"Address\" />"+
+                "\" class=\"form-control input-sm\" placeholder=\"" + searchLabels.address + "\" />"+
                 "</div>"+
-                "<button type=\"submit\" class=\"btn btn-default input-sm\">Search</button>"+
+                "<button type=\"submit\" class=\"btn btn-default input-sm\">" + searchLabels.search + "</button>"+
                 "</form></span></div>"+
                "<div class=\"col-sm-3 actionBar\"><p class=\"{{css.actions}}\"></p></div></div></div>"
     },

@@ -86,11 +86,11 @@
 
           <h3>{{ __('Acknowledgements') }}</h3>
 
-          <b>Bruno Pramont</b> Collectd code.<br />
-          <b>Dennis de Houx</b> Application monitors for PowerDNS, Shoutcast, NTPD (Client, Server).<br />
-          <b>Erik Bosrup</b> Overlib Library.<br />
-          <b>Jonathan De Graeve</b> SNMP code improvements.<br />
-          <b>Observium</b> Codebase for fork.<br />
+          <b>Bruno Pramont</b> {{ __('Collectd code.') }}<br />
+          <b>Dennis de Houx</b> {{ __('Application monitors for PowerDNS, Shoutcast, NTPD (Client, Server).') }}<br />
+          <b>Erik Bosrup</b> {{ __('Overlib Library.') }}<br />
+          <b>Jonathan De Graeve</b> {{ __('SNMP code improvements.') }}<br />
+          <b>Observium</b> {{ __('Codebase for fork.') }}<br />
 
       </div>
       <div class="col-md-6">

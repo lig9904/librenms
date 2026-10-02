@@ -2,15 +2,15 @@
 
 @section('content')
 <x-device.page :device="$device">
-    <x-option-bar name="Neighbours" :options="$data['selections']" :selected="$data['selection']"></x-option-bar>
+    <x-option-bar name="{{ __('Neighbours') }}" :options="$data['selections']" :selected="$data['selection']"></x-option-bar>
 @if($data['selection'] == 'list')
     <table class="table table-hover table-condensed" id="neighbour-table">
         <thead>
             <tr>
-                <th>Local Port</th>
-                <th>Remote Device</th>
-                <th>Remote Port</th>
-                <th>Protocol</th>
+                <th>{{ __('Local Port') }}</th>
+                <th>{{ __('Remote Device') }}</th>
+                <th>{{ __('Remote Port') }}</th>
+                <th>{{ __('Protocol') }}</th>
             </tr>
         </thead>
         <tbody>

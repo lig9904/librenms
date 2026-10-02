@@ -13,7 +13,7 @@ echo '<div style="clear: both;">';
 
 print_optionbar_start();
 
-echo "<span style='font-weight: bold;'>Graphs</span> &#187; ";
+echo "<span style='font-weight: bold;'>" . __('Graphs') . '</span> &#187; ';
 
 $graph_enable = [];
 foreach (dbFetchRows('SELECT * FROM device_graphs WHERE device_id = ? ORDER BY graph', [$device['device_id']]) as $graph) {
@@ -37,9 +37,9 @@ foreach ($graph_enable as $section => $nothing) {
         }
 
         if ($type == 'customoid') {
-            echo generate_link(ucwords('Custom OID'), $link_array, ['group' => $type]);
+            echo generate_link(__('Custom OID'), $link_array, ['group' => $type]);
         } else {
-            echo generate_link(ucwords($type), $link_array, ['group' => $type]);
+            echo generate_link(__(ucwords($type)), $link_array, ['group' => $type]);
         }
         if ($vars['group'] == $type) {
             echo '</span>';
@@ -81,4 +81,4 @@ if (($group != 'customoid') && is_file("includes/html/pages/device/graphs/$group
         }
     }
 }
-$pagetitle[] = 'Graphs';
+$pagetitle[] = __('Graphs');

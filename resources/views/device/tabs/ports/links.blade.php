@@ -3,10 +3,10 @@
     <table class="table table-hover table-condensed tw:mt-1 tw:mb-0!">
         <thead>
             <tr>
-                <th>Local Port</th>
-                <th>Remote Device</th>
-                <th>Remote Port</th>
-                <th>Protocol</th>
+                <th>{{ __('Local Port') }}</th>
+                <th>{{ __('Remote Device') }}</th>
+                <th>{{ __('Remote Port') }}</th>
+                <th>{{ __('Protocol') }}</th>
             </tr>
         </thead>
         @foreach($data['links'] as $link)

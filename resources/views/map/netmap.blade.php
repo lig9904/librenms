@@ -11,9 +11,9 @@
 &nbsp;<big><b>{{ $group_name }}</b></big>
 @endif
 <div class="pull-right">
-    Highlight Node
+    {{ __('Highlight Node') }}
     <select name="highlight_node" id="highlight_node" class="input-sm" onChange="highlightSelectedNode()";>
-        <option value="0">None</option>
+        <option value="0">{{ __('None') }}</option>
     </select>
 </div>
 </div>
@@ -21,7 +21,7 @@
 
 <div class="row" id="alert-row">
 <div class="col-md-12">
-<div class="alert alert-warning" role="alert" id="alert">Loading data</div>
+<div class="alert alert-warning" role="alert" id="alert">{{ __('Loading data') }}</div>
 </div>
 </div>
 
@@ -102,10 +102,10 @@
             dataType: 'json',
             success: function (data) {
                 if (Object.keys(data).length === 0) {
-                    $("#alert").text("No devices found");
+                    $("#alert").text(@js(__('No devices found')));
                     $("#alert-row").show();
                 } else if (Object.keys(data).length > 500) {
-                    $("#alert").text("The initial render will be slow due to the number of devices.  Auto refresh has been paused.");
+                    $("#alert").text(@js(__('The initial render will be slow due to the number of devices. Auto refresh has been paused.')));
                     $("#alert-row").show();
                 } else {
                     $("#alert").text("");

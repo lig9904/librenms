@@ -73,7 +73,7 @@
                     <select id="type" name="type" class="form-control">
                         @foreach($types as $type => $type_data)
                             <option value="{{ $type }}" {{ old('type', $device->type) == $type ? 'selected' : '' }} data-icon="{{ $type_data['icon'] }}">
-                                {{ $type_data['text'] }}
+                                {{ __($type_data['text']) }}
                             </option>
                         @endforeach
                     </select>

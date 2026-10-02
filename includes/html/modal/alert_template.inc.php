@@ -18,34 +18,34 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="Create">Alert Template :: <a target="_blank" href="https://docs.librenms.org/Alerting/Templates/"><i class="fa fa-book fa-1x"></i> Docs</a></h4>
+                <h4 class="modal-title" id="Create"><?= __('Alert Template') ?> :: <a target="_blank" href="https://docs.librenms.org/Alerting/Templates/"><i class="fa fa-book fa-1x"></i> <?= __('Docs') ?></a></h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label for="name">Template name </label>
+                            <label for="name"><?= __('Template name') ?> </label>
                             <input type="text" class="form-control input-sm" id="name" name="name">
                         </div>
                         <div class="form-group">
-                            <label for="template">Template </label>
+                            <label for="template"><?= __('Template') ?> </label>
                             <textarea class="form-control" id="template" name="template" style="font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;" rows="15"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="rules_list">Attach template to rules </label>
+                            <label for="rules_list"><?= __('Attach template to rules') ?> </label>
                             <select id="rules_list" name="rules_list[]" class="form-control" multiple="multiple"></select>
                         </div>
                         <div class="form-group">
-                            <label for="title">Alert title </label>
-                            <input type="text" class="form-control input-sm" id="title" name="title" placeholder="Alert Title">
+                            <label for="title"><?= __('Alert title') ?> </label>
+                            <input type="text" class="form-control input-sm" id="title" name="title" placeholder="<?= e(__('Alert Title')) ?>">
                         </div>
                         <div class="form-group">
-                            <label for="title_rec">Recovery title </label>
-                            <input type="text" class="form-control input-sm" id="title_rec" name="title_rec" placeholder="Recovery Title">
+                            <label for="title_rec"><?= __('Recovery title') ?> </label>
+                            <input type="text" class="form-control input-sm" id="title_rec" name="title_rec" placeholder="<?= e(__('Recovery Title')) ?>">
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm" name="create-template" id="create-template">Create template</button>
+                        <button type="button" class="btn btn-primary btn-sm" name="create-template" id="create-template"><?= __('Create template') ?></button>
                         <!--//FIXME remove Deprecated template-->
-                        <button type="button" class="btn btn-default btn-sm" name="convert-template" id="convert-template" title="Convert template to new syntax" style="display: none">Convert template</button>
+                        <button type="button" class="btn btn-default btn-sm" name="convert-template" id="convert-template" title="<?= e(__('Convert template to new syntax')) ?>" style="display: none"><?= __('Convert template') ?></button>
                     </div>
                 </div>
             </div>
@@ -61,10 +61,10 @@ $('#alert-template').on('show.bs.modal', function (event) {
 
     if(template_id != null && template_id != '') {
         if(default_template == "1") {
-            $('#create-template').after('<span class="pull-right"><button class="btn btn-primary btn-sm" id="reset-default">Reset to Default</button></span>');
+            $('#create-template').after('<span class="pull-right"><button class="btn btn-primary btn-sm" id="reset-default"><?= __('Reset to Default') ?></button></span>');
             $('#name').prop("disabled",true);
         }
-        $('#create-template').text('Update template');
+        $('#create-template').text(<?= json_encode(__('Update template')) ?>);
     }
     $.ajax({
         type: "POST",
@@ -94,11 +94,11 @@ $('#alert-template').on('show.bs.modal', function (event) {
                 dropdownAutoWidth : true,
                 width: "auto",
                 allowClear: true,
-                placeholder: "Nothing selected",
+                placeholder: <?= json_encode(__('Nothing selected')) ?>,
                 templateResult: function(data) {
                     if (data.id && data.element.dataset.usedby !== '') {
                         return $(
-                            '<span>' + data.text + ' <span class="label label-default">Used in template "' + data.element.dataset.usedby + '"</span></span>'
+                            '<span>' + data.text + ' <span class="label label-default"><?= __('Used in template') ?> "' + data.element.dataset.usedby + '"</span></span>'
                         );
                     } else if (data.id && data.selected) {
                         return $(

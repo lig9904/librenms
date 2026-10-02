@@ -3,14 +3,14 @@
     <table id="ports-arp" class="table table-condensed table-hover table-striped tw:mt-1 tw:mb-0!">
         <thead>
         <tr>
-            <th data-column-id="interface">Port</th>
-            <th data-column-id="mac_address" data-formatter="tooltip">MAC address</th>
+            <th data-column-id="interface">{{ __('Port') }}</th>
+            <th data-column-id="mac_address" data-formatter="tooltip">{{ __('MAC Address') }}</th>
             @config('mac_oui.enabled')
-            <th data-column-id="mac_oui" data-sortable="false" data-width="150px" data-visible="false" data-formatter="tooltip">Vendor</th>
+                <th data-column-id="mac_oui" data-sortable="false" data-width="150px" data-visible="false" data-formatter="tooltip">{{ __('Vendor') }}</th>
             @endconfig
-            <th data-column-id="ipv6_address" data-formatter="tooltip">IPv6 address</th>
-            <th data-column-id="remote_device" data-sortable="false">Remote device</th>
-            <th data-column-id="remote_interface" data-sortable="false">Remote interface</th>
+            <th data-column-id="ipv6_address" data-formatter="tooltip">{{ __('IPv6 Address') }}</th>
+            <th data-column-id="remote_device" data-sortable="false">{{ __('Remote Device') }}</th>
+            <th data-column-id="remote_interface" data-sortable="false">{{ __('Remote Interface') }}</th>
         </tr>
         </thead>
         <tbody>

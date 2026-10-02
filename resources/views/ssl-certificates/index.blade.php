@@ -96,6 +96,14 @@ function sslCertDelete(id) {
 $(document).ready(function () {
     $("#ssl-certificates").bootgrid({
         ajax: true,
+        labels: @js([
+            'all' => __('All'),
+            'infos' => __('Showing ' . '{' . '{ctx.start}} to ' . '{' . '{ctx.end}} of ' . '{' . '{ctx.total}} entries'),
+            'loading' => __('Loading...'),
+            'noResults' => __('No results found!'),
+            'refresh' => __('Refresh'),
+            'search' => __('Search'),
+        ]),
         rowCount: [25, 50, 100, -1],
         url: "{{ route('table.ssl-certificates') }}",
         formatters: {

@@ -5,6 +5,12 @@
 @section('content')
     <div x-data="{
             groups: @js($groups),
+            statusLabels: @js([
+                0 => __('Validation failed'),
+                1 => __('Validation warning'),
+                2 => __('Validation passed'),
+                3 => __('Validation info'),
+            ]),
             listItems: 10,
             validateGroup(group) {
                 // reset state and run/re-run the given group
@@ -30,7 +36,7 @@
                                 const match = arr.find(item => item.group === group.group) ?? arr[0];
                                 if (match) {
                                     group.status = match.status;
-                                    group.statusText = match.statusText;
+                                    group.statusText = this.statusLabels[match.status] ?? match.statusText;
                                     group.results = match.results ?? [];
                                 } else {
                                     group.errorMessage = '{{ trans('validation.results.backend_failed') }}';
@@ -105,7 +111,7 @@
                                 <template x-for="result in group.results" x-show="! group.loading && ! group.errorMessage">
                                     <div class="panel" x-bind:class="{'panel-info': result.status === 3, 'panel-success': result.status === 2, 'panel-warning': result.status === 1, 'panel-danger': result.status === 0}">
                                         <div class="panel-heading"
-                                             x-text="result.statusText + ': ' + result.message"
+                                             x-text="(statusLabels[result.status] ?? result.statusText) + ': ' + result.message"
                                         ></div>
                                         <div class="panel-body" x-show="result.fix.length || result.list.length || result.fixer">
                                             <div x-show="result.fixer" class="tw:mb-2" x-data="fixerData(result.fixer)">

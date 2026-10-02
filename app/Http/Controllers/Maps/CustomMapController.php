@@ -309,7 +309,7 @@ class CustomMapController extends Controller
     }
 
     /**
-     * @return array<array{key: string, label: string, type: string, endpoint?: string, options?: string[]|array<string, string>, params?: array<string, string>}>
+     * @return array<array{key: string, label: string, type: string, search?: bool, endpoint?: string, options?: string[]|array<string, string>, params?: array<string, string>}>
      */
     private function filterFields(): array
     {
@@ -318,6 +318,7 @@ class CustomMapController extends Controller
                 'key' => 'name',
                 'label' => __('Name'),
                 'type' => 'text',
+                'search' => true,
             ],
             [
                 'key' => 'menu_group',

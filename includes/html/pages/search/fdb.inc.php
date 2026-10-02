@@ -1,29 +1,49 @@
 <div class="panel panel-default panel-condensed">
     <div class="panel-heading">
-        <strong>FDB Entries</strong>
+        <strong><?php echo e(__('FDB Entries')); ?></strong>
     </div>
     <table id="fdb-search" class="table table-hover table-condensed table-striped">
         <thead>
             <tr>
-                <th data-column-id="device">Device</th>
-                <th data-column-id="mac_address" data-width="150px" data-formatter="tooltip">MAC Address</th>
-                <th data-column-id="mac_oui" data-sortable="false" data-width="150px" data-visible="<?php echo \App\Facades\LibrenmsConfig::get('mac_oui.enabled') ? 'true' : 'false' ?>" data-formatter="tooltip">Vendor</th>
-                <th data-column-id="ipv4_address" data-sortable="false" data-formatter="tooltip">IPv4 Address</th>
-                <th data-column-id="interface">Port</th>
-                <th data-column-id="vlan" data-width="60px">Vlan</th>
-                <th data-column-id="description" data-formatter="tooltip">Description</th>
-                <th data-column-id="dnsname" data-sortable="false" data-visible="false" data-formatter="tooltip">DNS Name</th>
-                <th data-column-id="first_seen" data-width="165px">First seen</th>
-                <th data-column-id="last_seen" data-width="165px">Last seen</th>
+                <th data-column-id="device"><?php echo e(__('Device')); ?></th>
+                <th data-column-id="mac_address" data-width="150px" data-formatter="tooltip"><?php echo e(__('MAC Address')); ?></th>
+                <th data-column-id="mac_oui" data-sortable="false" data-width="150px" data-visible="<?php echo \App\Facades\LibrenmsConfig::get('mac_oui.enabled') ? 'true' : 'false' ?>" data-formatter="tooltip"><?php echo e(__('Vendor')); ?></th>
+                <th data-column-id="ipv4_address" data-sortable="false" data-formatter="tooltip"><?php echo e(__('IPv4 Address')); ?></th>
+                <th data-column-id="interface"><?php echo e(__('Port')); ?></th>
+                <th data-column-id="vlan" data-width="60px"><?php echo e(__('VLAN')); ?></th>
+                <th data-column-id="description" data-formatter="tooltip"><?php echo e(__('Description')); ?></th>
+                <th data-column-id="dnsname" data-sortable="false" data-visible="false" data-formatter="tooltip"><?php echo e(__('DNS Name')); ?></th>
+                <th data-column-id="first_seen" data-width="165px"><?php echo e(__('First seen')); ?></th>
+                <th data-column-id="last_seen" data-width="165px"><?php echo e(__('Last seen')); ?></th>
             </tr>
         </thead>
     </table>
 </div>
 
 <script>
+var searchLabels = <?php echo json_encode([
+    'allDevices' => __('All Devices'),
+    'macAddress' => __('MAC Address'),
+    'ipAddress' => __('IP Address'),
+    'dnsName' => __('DNS Name'),
+    'description' => __('Description'),
+    'vendor' => __('Vendor'),
+    'vlan' => __('VLAN'),
+    'value' => __('Value'),
+    'search' => __('Search'),
+    'bootgrid' => [
+        'all' => __('All'),
+        'infos' => __('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries'),
+        'loading' => __('Loading...'),
+        'noResults' => __('No results found!'),
+        'refresh' => __('Refresh'),
+        'search' => __('Search'),
+    ],
+], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
 
 var grid = $("#fdb-search").bootgrid({
     ajax: true,
+    labels: searchLabels.bootgrid,
     rowCount: [50, 100, 250, -1],
     templates: {
         header: "<div id=\"{{ctx.id}}\" class=\"{{css.header}}\"><div class=\"row\">"+
@@ -32,7 +52,7 @@ var grid = $("#fdb-search").bootgrid({
                 "<?php echo addslashes(csrf_field()) ?>"+
                 "<div class=\"form-group\">"+
                 "<select name=\"device_id\" id=\"device_id\" class=\"form-control input-sm\">"+
-                "<option value=\"\">All Devices</option>"+
+                "<option value=\"\">" + searchLabels.allDevices + "</option>"+
 <?php
 
 $device_id = (int) ($vars['device_id'] ?? 0);
@@ -71,7 +91,7 @@ if ($searchby == 'mac') {
 }
 ?>
 
-                ">MAC Address</option>"+
+                ">" + searchLabels.macAddress + "</option>"+
                 "<option value=\"ip\" "+
 <?php
 if ($searchby == 'ip') {
@@ -79,7 +99,7 @@ if ($searchby == 'ip') {
 }
 ?>
 
-                ">IP Address</option>"+
+                ">" + searchLabels.ipAddress + "</option>"+
                 "<option value=\"dnsname\" "+
 <?php
 if ($searchby == 'dnsname') {
@@ -87,7 +107,7 @@ if ($searchby == 'dnsname') {
 }
 ?>
 
-                ">DNS Name</option>"+
+                ">" + searchLabels.dnsName + "</option>"+
                 "<option value=\"description\" "+
 <?php
 if ($searchby == 'description') {
@@ -95,7 +115,7 @@ if ($searchby == 'description') {
 }
 ?>
 
-                ">Description</option>"+
+                ">" + searchLabels.description + "</option>"+
                 "<option value=\"vendor\" "+
 <?php
 if ($searchby == 'vendor') {
@@ -103,7 +123,7 @@ if ($searchby == 'vendor') {
 }
 ?>
 
-                ">Vendor</option>"+
+                ">" + searchLabels.vendor + "</option>"+
                 "<option value=\"vlan\" "+
 <?php
 if ($searchby == 'vlan') {
@@ -111,7 +131,7 @@ if ($searchby == 'vlan') {
 }
 ?>
 
-                ">Vlan</option>"+
+                ">" + searchLabels.vlan + "</option>"+
                 "</select>"+
                 "</div>"+
                 "<div class=\"form-group\">"+
@@ -120,9 +140,9 @@ if ($searchby == 'vlan') {
 echo '"' . htmlspecialchars($searchPhrase) . '"+';
 ?>
 
-                "\" class=\"form-control input-sm\" placeholder=\"Value\" />"+
+                "\" class=\"form-control input-sm\" placeholder=\"" + searchLabels.value + "\" />"+
                 "</div>"+
-                "<button type=\"submit\" class=\"btn btn-default input-sm\">Search</button>"+
+                "<button type=\"submit\" class=\"btn btn-default input-sm\">" + searchLabels.search + "</button>"+
                 "</form></span></div>"+
                "<div class=\"col-sm-3 actionBar\"><p class=\"{{css.actions}}\"></p></div></div></div>"
     },

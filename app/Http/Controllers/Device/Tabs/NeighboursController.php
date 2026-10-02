@@ -70,11 +70,11 @@ class NeighboursController implements DeviceTab
         return [
             'selections' => [
                 'list' => [
-                    'text' => 'List',
+                    'text' => __('List'),
                     'link' => route('device', ['device' => $device, 'tab' => 'neighbours', 'vars' => 'selection=list']),
                 ],
                 'map' => [
-                    'text' => 'Map',
+                    'text' => __('Map'),
                     'link' => route('device', ['device' => $device, 'tab' => 'neighbours', 'vars' => 'selection=map']),
                 ],
             ],

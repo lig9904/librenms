@@ -70,12 +70,12 @@ foreach (Sensor::where('device_id', $device['device_id'])->distinct()->pluck('se
     $type_text[$sensor_class] = trans('sensors.' . $sensor_class . '.short');
 }
 
-$type_text['overview'] = 'Overview';
+$type_text['overview'] = __('Overview');
 $type_text['qfp'] = 'QFP';
-$type_text['processor'] = 'Processor';
-$type_text['mempool'] = 'Memory';
-$type_text['storage'] = 'Disk Usage';
-$type_text['diskio'] = 'Disk I/O';
+$type_text['processor'] = __('Processor');
+$type_text['mempool'] = __('Memory');
+$type_text['storage'] = __('Disk Usage');
+$type_text['diskio'] = __('Disk I/O');
 
 $link_array = [
     'page' => 'device',
@@ -85,7 +85,7 @@ $link_array = [
 
 print_optionbar_start();
 
-echo "<span style='font-weight: bold;'>Health</span> &#187; ";
+echo "<span style='font-weight: bold;'>" . __('Health') . '</span> &#187; ';
 
 if (empty($vars['metric'])) {
     $vars['metric'] = 'overview';
@@ -121,4 +121,4 @@ if (is_file("includes/html/pages/device/health/$metric.inc.php")) {
     }
 }
 
-$pagetitle[] = 'Health';
+$pagetitle[] = __('Health');

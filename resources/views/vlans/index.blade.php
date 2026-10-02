@@ -54,6 +54,14 @@
         var vlan_id = {{ (int) $vlanIds->first() }};
         var grid = $("#vlan-ports").bootgrid({
             ajax: true,
+            labels: @js([
+                'all' => __('All'),
+                'infos' => __('Showing ' . '{' . '{ctx.start}} to ' . '{' . '{ctx.end}} of ' . '{' . '{ctx.total}} entries'),
+                'loading' => __('Loading...'),
+                'noResults' => __('No results found!'),
+                'refresh' => __('Refresh'),
+                'search' => __('Search'),
+            ]),
             post: function () {
                 return {vlan: vlan_id}
             },
@@ -61,6 +69,14 @@
         });
         var grid = $("#vlan-devices").bootgrid({
             ajax: true,
+            labels: @js([
+                'all' => __('All'),
+                'infos' => __('Showing ' . '{' . '{ctx.start}} to ' . '{' . '{ctx.end}} of ' . '{' . '{ctx.total}} entries'),
+                'loading' => __('Loading...'),
+                'noResults' => __('No results found!'),
+                'refresh' => __('Refresh'),
+                'search' => __('Search'),
+            ]),
             post: function () {
                 return {vlan: vlan_id}
             },
@@ -69,7 +85,7 @@
                 state: function(column, row) {
                     console.log(column, row);
                     const isOperational = row[column.id];
-                    const statusText = isOperational ? "operational" : "suspended";
+                    const statusText = isOperational ? @js(__('Operational')) : @js(__('Suspended'));
                     const cssClass = isOperational ? "text-success" : "text-danger";
 
                     return `<span class="${cssClass}">${statusText}</span>`;

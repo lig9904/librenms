@@ -21,12 +21,12 @@ if ($device_id = (int) Request::input('device')) {
     $device = Device::find($device_id);
 }
 
-$pagetitle[] = 'Eventlog';
+$pagetitle[] = __('Eventlog');
 ?>
 
 <div class="panel panel-default panel-condensed">
     <div class="panel-heading">
-        <strong>Eventlog</strong>
+        <strong><?php echo e(__('Eventlog')); ?></strong>
     </div>
 
     <?php
@@ -36,6 +36,14 @@ $pagetitle[] = 'Eventlog';
 </div>
 
 <script>
+    var eventlogLabels = <?php echo json_encode([
+        'device' => __('Device'),
+        'allDevices' => __('All Devices'),
+        'type' => __('Type'),
+        'allTypes' => __('All Types'),
+        'filter' => __('Filter'),
+    ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
+
     $('.actionBar').append(
         '<div class="pull-left">' +
         '<form method="post" action="" class="form-inline" role="form" id="result_form">' +
@@ -44,9 +52,9 @@ $pagetitle[] = 'Eventlog';
         if (! isset($vars['fromdevice'])) {
             ?>
         '<div class="form-group">' +
-        '<label><strong>Device&nbsp;&nbsp;</strong></label>' +
+        '<label><strong>' + eventlogLabels.device + '&nbsp;&nbsp;</strong></label>' +
         '<select name="device" id="device" class="form-control">' +
-        '<option value="">All Devices</option>' +
+        '<option value="">' + eventlogLabels.allDevices + '</option>' +
             <?php
             if (isset($device) && $device instanceof Device) {
                 echo "'<option value=\"" . (int) $device->device_id . '">' . addcslashes(e($device->display), "'\\") . "</option>' +";
@@ -58,9 +66,9 @@ $pagetitle[] = 'Eventlog';
             echo "'&nbsp;&nbsp;<input type=\"hidden\" name=\"device\" id=\"device\" value=\"" . $device?->device_id . "\">' + ";
         }
         ?>
-        '<div class="form-group"><label><strong>Type&nbsp;&nbsp;</strong></label>' +
+        '<div class="form-group"><label><strong>' + eventlogLabels.type + '&nbsp;&nbsp;</strong></label>' +
         '<select name="eventtype" id="eventtype" class="form-control input-sm">' +
-        '<option value="">All types</option>' +
+        '<option value="">' + eventlogLabels.allTypes + '</option>' +
         <?php
         if ($type = Request::input('eventtype')) {
             $js_type = addcslashes(htmlentities($type), "'");
@@ -69,7 +77,7 @@ $pagetitle[] = 'Eventlog';
         ?>
         '</select>' +
         '</div>&nbsp;&nbsp;' +
-        '<button type="submit" class="btn btn-default">Filter</button>' +
+        '<button type="submit" class="btn btn-default">' + eventlogLabels.filter + '</button>' +
         '</form>' +
         '</div>'
     );
@@ -80,7 +88,7 @@ $pagetitle[] = 'Eventlog';
         dropdownAutoWidth : true,
         width: "auto",
         allowClear: true,
-        placeholder: "All Devices",
+        placeholder: eventlogLabels.allDevices,
         ajax: {
             url: '<?php echo route('ajax.select.device'); ?>',
             delay: 200
@@ -93,7 +101,7 @@ $pagetitle[] = 'Eventlog';
         dropdownAutoWidth : true,
         width: "auto",
         allowClear: true,
-        placeholder: "All Types",
+        placeholder: eventlogLabels.allTypes,
         ajax: {
             url: '<?php echo route('ajax.select.eventlog'); ?>',
             delay: 200,

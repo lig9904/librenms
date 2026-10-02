@@ -15,10 +15,10 @@ include 'includes/html/modal/delete_alert_template.inc.php';
       <thead>
           <tr>
             <th data-column-id="id" data-searchable="false" data-identifier="true" data-type="numeric">#</th>
-            <th data-column-id="templatename">Name</th>
-            <th data-column-id="alert_rules" data-searchable="false" data-formatter="alert_rules">Alert Rules</th>
-            <th data-column-id="actions" data-searchable="false" data-formatter="commands">Action</th>
-            <th data-column-id="old_template" data-searchable="false" data-visible="false">Old template</th>
+            <th data-column-id="templatename"><?= __('Name') ?></th>
+            <th data-column-id="alert_rules" data-searchable="false" data-formatter="alert_rules"><?= __('Alert Rules') ?></th>
+            <th data-column-id="actions" data-searchable="false" data-formatter="commands"><?= __('Action') ?></th>
+            <th data-column-id="old_template" data-searchable="false" data-visible="false"><?= __('Old template') ?></th>
           </tr>
       </thead>
       <tbody>
@@ -71,7 +71,7 @@ $(document).ready(function() {
 <?php if (Gate::allows('create', AlertTemplate::class)) { ?>
                         <div class="col-sm-8 actionBar"> \
                             <span class="pull-left"> \
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alert-template" data-template_id="">Create new alert template</button> \
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#alert-template" data-template_id=""><?= __('Create new alert template') ?></button> \
                             </span> \
                         </div> \
                 <div class="col-sm-4 actionBar"><p class="{{css.search}}"></p><p class="{{css.actions}}"></p></div></div></div>'
@@ -85,7 +85,7 @@ $(document).ready(function() {
                 var response = '';
                 //FIXME remove Deprecated template
                 if (row.old_template == "1") {
-                    response = "<button type='button' class='btn btn-xs btn-warning' data-content=' class='btn btn-xs btn-warning' data-content='><i class='fa fa-exclamation-triangle' title='This is a legacy template and needs converting, please edit this template and click convert then save'><i class='fa fa-exclamation-triangle'></i></button> ";
+                    response = "<button type='button' class='btn btn-xs btn-warning' data-content=' class='btn btn-xs btn-warning' data-content='><i class='fa fa-exclamation-triangle' title='<?= e(__('This is a legacy template and needs converting, please edit this template and click convert then save')) ?>'><i class='fa fa-exclamation-triangle'></i></button> ";
                 }
                 if(row.id == 0) {
                     response = response + "<button type=\"button\" class=\"btn btn-xs btn-primary command-edit\" data-toggle='modal' data-target='#alert-template' data-template_id=\"" + row.id + "\" data-template_action='edit' name='edit-alert-template'><i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button> " + "<button type=\"button\" class=\"btn btn-xs btn-danger command-delete\" disabled=\"disabled\"><i class=\"fa fa-trash-o\" aria-hidden=\"true\"></i></button>";

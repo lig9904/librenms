@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Gate;
 
 $no_refresh = true;
 
-$pagetitle[] = 'Device Dependencies';
+$pagetitle[] = __('Device Dependencies');
 
 require_once 'includes/html/modal/delete_host_dependency.inc.php';
 require_once 'includes/html/modal/edit_host_dependency.inc.php';
@@ -31,12 +31,12 @@ require_once 'includes/html/modal/manage_host_dependencies.inc.php';
     <table id="hostdeps" class="table table-hover table-condensed table-striped">
         <thead>
             <tr>
-                <th data-column-id="id" data-type="int" data-formatter="id" data-sortable="true" data-visible="true">Id</th>
-                <th data-column-id="hostname" data-type="string" data-css-class="childhost" data-formatter="hostname">Hostname</th>
-                <th data-column-id="sysname" data-type="string" data-visible="false">Sysname</th>
-                <th data-column-id="parent" data-type="string" data-css-class="parenthost" data-formatter="parent">Parent Device(s)</th>
-                <th data-column-id="parentid" data-visible="false">Parent ID</th>
-                <th data-column-id="actions" data-sortable="false" data-searchable="false" data-formatter="actions">Actions</th>
+                <th data-column-id="id" data-type="int" data-formatter="id" data-sortable="true" data-visible="true"><?php echo e(__('Id')); ?></th>
+                <th data-column-id="hostname" data-type="string" data-css-class="childhost" data-formatter="hostname"><?php echo e(__('Hostname')); ?></th>
+                <th data-column-id="sysname" data-type="string" data-visible="false"><?php echo e(__('Sysname')); ?></th>
+                <th data-column-id="parent" data-type="string" data-css-class="parenthost" data-formatter="parent"><?php echo e(__('Parent Device(s)')); ?></th>
+                <th data-column-id="parentid" data-visible="false"><?php echo e(__('Parent ID')); ?></th>
+                <th data-column-id="actions" data-sortable="false" data-searchable="false" data-formatter="actions"><?php echo e(__('Actions')); ?></th>
             </tr>
         </thead>
         <tbody>
@@ -44,9 +44,25 @@ require_once 'includes/html/modal/manage_host_dependencies.inc.php';
     </table>
 </div>
 <script>
+var dependencyLabels = <?php echo json_encode([
+    'manage' => __('Manage Device Dependencies'),
+    'edit' => __('Edit'),
+    'delete' => __('Delete'),
+    'none' => __('None'),
+    'loadError' => __('Device dependencies could not be retrieved from the database'),
+    'bootgrid' => [
+        'all' => __('All'),
+        'infos' => __('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries'),
+        'loading' => __('Loading...'),
+        'noResults' => __('No results found!'),
+        'refresh' => __('Refresh'),
+        'search' => __('Search'),
+    ],
+], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>;
 var grid = $("#hostdeps").bootgrid({
     rowCount: [50, 100, 250, -1],
     ajax: true,
+    labels: dependencyLabels.bootgrid,
     post: function() {
         return {
             type: "get-host-dependencies",
@@ -61,7 +77,7 @@ var grid = $("#hostdeps").bootgrid({
 <?php if (Gate::allows('update', DeviceCache::getPrimary())) { ?>
                         <div class="col-sm-8 actionBar"> \
                             <span class="pull-left"> \
-                            <button type="button" class="btn btn-primary btn-sm command-manage" data-toggle="modal" data-target="#manage-dependencies" data-template_id="">Manage Device Dependencies</button> \
+                            <button type="button" class="btn btn-primary btn-sm command-manage" data-toggle="modal" data-target="#manage-dependencies" data-template_id="">' + dependencyLabels.manage + '</button> \
                             </span> \
                         </div> \
                 <div class="col-sm-4 actionBar"><p class="{{css.search}}"></p><p class="{{css.actions}}"></p></div></div></div>'
@@ -79,7 +95,7 @@ var grid = $("#hostdeps").bootgrid({
             var edit_button = document.createElement('button');
             edit_button.setAttribute('type', 'button');
             edit_button.setAttribute('class', 'btn btn-primary btn-sm command-edit');
-            edit_button.setAttribute('aria-label', 'Edit');
+            edit_button.setAttribute('aria-label', dependencyLabels.edit);
             edit_button.setAttribute('data-toggle', 'modal');
             edit_button.setAttribute('data-target', '#edit-dependency');
             edit_button.setAttribute('name', 'edit-host-dependency');
@@ -99,7 +115,7 @@ var grid = $("#hostdeps").bootgrid({
             var delete_button = document.createElement('button');
             delete_button.setAttribute('type', 'button');
             delete_button.setAttribute('class', 'btn btn-danger btn-sm command-delete');
-            delete_button.setAttribute('aria-label', 'Delete');
+            delete_button.setAttribute('aria-label', dependencyLabels.delete);
             delete_button.setAttribute('data-toggle', 'modal');
             delete_button.setAttribute('data-target', '#confirm-delete');
             delete_button.setAttribute('name', 'delete-host-dependency');
@@ -133,7 +149,7 @@ var grid = $("#hostdeps").bootgrid({
         },
         "parent": function(column, row) {
             if (row.parent == 'None') {
-                return 'None';
+                return dependencyLabels.none;
             }
 
             var temp = row.parent.split(',');
@@ -198,9 +214,9 @@ $(document).ready(function() {
         dataType: "json",
         success: function(output) {
             if (output.status == 0) {
-                manParentDevs.append($('<option>', { value: 0, text: 'None'}));
-                editSelect.append($('<option>', { value: 0, text: 'None'}));
-                manParentDevstoClr.append($('<option>', { value: 0, text: 'None'}));
+                manParentDevs.append($('<option>', { value: 0, text: dependencyLabels.none}));
+                editSelect.append($('<option>', { value: 0, text: dependencyLabels.none}));
+                manParentDevstoClr.append($('<option>', { value: 0, text: dependencyLabels.none}));
                 $.each(output.deps, function (i,elem) {
                     var devtext = elem.hostname + ' (' + elem.sysName + ')';
                     manParentDevs.append($('<option>',{value:elem.id, text:devtext}));
@@ -209,11 +225,11 @@ $(document).ready(function() {
                     manParentDevstoClr.append($('<option>',{value:elem.id, text:devtext}));
                 });
             } else {
-                toastr.error('Device dependencies could not be retrieved from the database');
+                toastr.error(dependencyLabels.loadError);
             }
         },
         error: function() {
-            toastr.error('Device dependencies could not be retrieved from the database');
+            toastr.error(dependencyLabels.loadError);
         }
     });
 });

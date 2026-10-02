@@ -93,7 +93,7 @@ class Page extends Component
         foreach (LibrenmsConfig::get('device_types', []) as $type) {
             if (isset($type['type']) && $type['type'] == $this->device->type) {
                 $this->typeIcon = $type['icon'] ?? null;
-                $this->typeText = $type['text'] ?? $this->device->type;
+                $this->typeText = isset($type['text']) ? __($type['text']) : $this->device->type;
                 break;
             }
         }

@@ -86,7 +86,7 @@ if (isset($_POST['addbill']) && $_POST['addbill'] == 'yes') {
     exit();
 }
 
-$pagetitle[] = 'Billing';
+$pagetitle[] = __('Billing');
 
 echo "<meta http-equiv='refresh' content='10000'>";
 
@@ -96,16 +96,16 @@ include 'includes/html/modal/new_bill.inc.php';
     <div class="table-responsive">
         <table class="table table-hover" id="bills-list">
         <thead>
-            <th data-column-id="bill_name">Billing name</th>
+            <th data-column-id="bill_name"><?php echo e(__('Billing name')); ?></th>
             <th data-column-id="notes" data-sortable="false"></th>
-            <th data-column-id="bill_type">Type</th>
-            <th data-column-id="bill_allowed" data-align="right">Allowed</th>
-            <th data-column-id="total_data_in" data-align="right">Inbound</th>
-            <th data-column-id="total_data_out" data-align="right">Outbound</th>
-            <th data-column-id="total_data" data-align="right">Total</th>
-            <th data-column-id="rate_95th" data-align="right">95th Percentile</th>
-            <th data-column-id="overusage" data-sortable="false" data-align="center">Overusage</th>
-            <th data-column-id="predicted" data-sortable="false" data-align="center">Predicted</th>
+            <th data-column-id="bill_type"><?php echo e(__('Type')); ?></th>
+            <th data-column-id="bill_allowed" data-align="right"><?php echo e(__('Allowed')); ?></th>
+            <th data-column-id="total_data_in" data-align="right"><?php echo e(__('Inbound')); ?></th>
+            <th data-column-id="total_data_out" data-align="right"><?php echo e(__('Outbound')); ?></th>
+            <th data-column-id="total_data" data-align="right"><?php echo e(__('Total')); ?></th>
+            <th data-column-id="rate_95th" data-align="right"><?php echo e(__('95th Percentile')); ?></th>
+            <th data-column-id="overusage" data-sortable="false" data-align="center"><?php echo e(__('Overusage')); ?></th>
+            <th data-column-id="predicted" data-sortable="false" data-align="center"><?php echo e(__('Predicted')); ?></th>
             <th data-column-id="graph" data-sortable="false"></th>
             <th data-column-id="actions" data-sortable="false"></th>
         </thead>
@@ -118,18 +118,18 @@ include 'includes/html/modal/new_bill.inc.php';
         <div class="row">
             <div class="col-sm-4">
             <?php if (Gate::allows('create', Bill::class)) {  ?>
-                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#create-bill"><i class="fa fa-plus"></i> Create Bill</button>
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#create-bill"><i class="fa fa-plus"></i> <?php echo e(__('Create Bill')); ?></button>
             <?php } ?>
             </div>
             <div class="col-sm-8 actionBar">
                 <span class="form-inline" id="table-filters">
                 <fieldset class="form-group">
                     <select name='period' id='period' class="form-control input-sm">
-                      <option value=''>Current Billing Period</option>
-                      <option value='prev'>Previous Billing Period</option>
+                      <option value=''><?php echo e(__('Current Billing Period')); ?></option>
+                      <option value='prev'><?php echo e(__('Previous Billing Period')); ?></option>
                     </select>
                     <select name='bill_type' id='bill_type' class="form-control input-sm">
-                      <option value=''>All Types</option>
+                      <option value=''><?php echo e(__('All Types')); ?></option>
                       <option value='cdr'
                             <?php
                             if (isset($_GET['bill_type']) && $_GET['bill_type'] === 'cdr') {
@@ -141,22 +141,22 @@ include 'includes/html/modal/new_bill.inc.php';
                             if (isset($_GET['bill_type']) && $_GET['bill_type'] === 'quota') {
                                 echo 'selected';
                             }
-                            ?>>Quota</option>
+                            ?>><?php echo e(__('Quota')); ?></option>
                     </select>
                     <select name='state' id='state' class="form-control input-sm">
-                      <option value=''>All States</option>
+                      <option value=''><?php echo e(__('All States')); ?></option>
                       <option value='under'
                             <?php
                             if (isset($_GET['state']) && $_GET['state'] === 'under') {
                                 echo 'selected';
                             }
-                            ?>>Under Quota</option>
+                            ?>><?php echo e(__('Under Quota')); ?></option>
                       <option value='over'
                             <?php
                             if (isset($_GET['state']) && $_GET['state'] === 'over') {
                                 echo 'selected';
                             }
-                            ?>>Over Quota</option>
+                            ?>><?php echo e(__('Over Quota')); ?></option>
                     </select>
                   </fieldset>
                 </span>
@@ -170,6 +170,14 @@ include 'includes/html/modal/new_bill.inc.php';
 <script type="text/javascript">
     var grid = $('#bills-list').bootgrid({
        ajax: true,
+       labels: <?php echo json_encode([
+           'all' => __('All'),
+           'infos' => __('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries'),
+           'loading' => __('Loading...'),
+           'noResults' => __('No results found!'),
+           'refresh' => __('Refresh'),
+           'search' => __('Search'),
+       ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?>,
        templates: {
            header: $('#table-header').html()
        },

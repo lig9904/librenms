@@ -89,13 +89,13 @@
                         <div class="form-group">
                             <label for="group_name" class="col-sm-3 control-label">{{ __('Group Name') }}:</label>
                             <div class="col-sm-9">
-                                <input type="input" class="form-control" id="group_name" name="group_name" placeholder="Group Name">
+                                <input type="input" class="form-control" id="group_name" name="group_name" placeholder="{{ __('Group Name') }}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="descr" class="col-sm-3 control-label">{{ __('Description') }}:</label>
                             <div class="col-sm-9">
-                                <input type="input" class="form-control" id="descr" name="descr" placeholder="Description">
+                                <input type="input" class="form-control" id="descr" name="descr" placeholder="{{ __('Description') }}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -178,7 +178,7 @@ $('#create-group').on("click", function(e) {
             }
         },
         error: function(){
-            $("#error").html('<div class="alert alert-info">An error occurred.</div>');
+            $("#error").html('<div class="alert alert-info">{{ __('An error occurred.') }}</div>');
         }
     });
 });

@@ -30,12 +30,12 @@ $default_invert_map = LibrenmsConfig::get('alert_rule.invert_map');
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h5 class="modal-title" id="Create">Alert Rule :: <a target="_blank" href="https://docs.librenms.org/Alerting/"><i class="fa fa-book fa-1x"></i> Docs</a> </h5>
+                    <h5 class="modal-title" id="Create"><?= __('Alert Rule') ?> :: <a target="_blank" href="https://docs.librenms.org/Alerting/"><i class="fa fa-book fa-1x"></i> <?= __('Docs') ?></a> </h5>
                 </div>
                 <div class="modal-body">
                     <ul class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#main" aria-controls="main" role="tab" data-toggle="tab">Main </a></li>
-                        <li role="presentation"><a href="#advanced" aria-controls="advanced" role="tab" data-toggle="tab">Advanced</a></li>
+                        <li role="presentation" class="active"><a href="#main" aria-controls="main" role="tab" data-toggle="tab"><?= __('Main') ?> </a></li>
+                        <li role="presentation"><a href="#advanced" aria-controls="advanced" role="tab" data-toggle="tab"><?= __('Advanced') ?></a></li>
                     </ul>
                     <br />
                     <form method="post" role="form" id="rules" class="form-horizontal alerts-form">
@@ -47,8 +47,8 @@ $default_invert_map = LibrenmsConfig::get('alert_rule.invert_map');
                         <div id="alert-rule-form-error" class="alert alert-danger" style="display: none; margin-top: 10px;"></div>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="main">
-                                <div class='form-group' title="The description of this alert rule.">
-                                    <label for='rule_name' class='col-sm-3 col-md-2 control-label'>Rule name </label>
+                                <div class='form-group' title="<?= e(__("The description of this alert rule.")) ?>">
+                                    <label for='rule_name' class='col-sm-3 col-md-2 control-label'><?= __('Rule name') ?> </label>
                                     <div class='col-sm-9 col-md-10'>
                                         <input type='text' id='rule_name' name='name' class='form-control validation' maxlength='200' required>
                                     </div>
@@ -59,14 +59,14 @@ $default_invert_map = LibrenmsConfig::get('alert_rule.invert_map');
                                             <button class="btn btn-default dropdown-toggle" type="button"
                                                     id="import-from" data-toggle="dropdown" aria-haspopup="true"
                                                     aria-expanded="true">
-                                                Import from
+                                                <?= __('Import from') ?>
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="import-from" id="import-dropdown">
-                                                <li><a href="#" name="import-query" id="import-query">SQL Query</a></li>
-                                                <li><a href="#" name="import-old-format" id="import-old-format">Old Format</a></li>
-                                                <li><a href="#" name="import-collection" id="import-collection">Collection</a></li>
-                                                <li><a href="#" name="import-alert_rule" id="import-alert_rule">Alert Rule</a></li>
+                                                <li><a href="#" name="import-query" id="import-query"><?= __('SQL Query') ?></a></li>
+                                                <li><a href="#" name="import-old-format" id="import-old-format"><?= __('Old Format') ?></a></li>
+                                                <li><a href="#" name="import-collection" id="import-collection"><?= __('Collection') ?></a></li>
+                                                <li><a href="#" name="import-alert_rule" id="import-alert_rule"><?= __('Alert Rule') ?></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -74,38 +74,38 @@ $default_invert_map = LibrenmsConfig::get('alert_rule.invert_map');
                                         <div id="builder"></div>
                                     </div>
                                 </div>
-                                <div class="form-group" title="How to display the alert.  OK: green, Warning: yellow, Critical: red">
-                                    <label for='severity' class='col-sm-3 col-md-2 control-label'>Severity </label>
+                                <div class="form-group" title="<?= e(__("How to display the alert.  OK: green, Warning: yellow, Critical: red")) ?>">
+                                    <label for='severity' class='col-sm-3 col-md-2 control-label'><?= __('Severity') ?> </label>
                                     <div class="col-sm-2">
                                         <select name='severity' id='severity' class='form-control'>
                                             <option value='ok'>OK</option>
-                                            <option value='warning'>Warning</option>
-                                            <option value='critical' selected>Critical</option>
+                                            <option value='warning'><?= __('Warning') ?></option>
+                                            <option value='critical' selected><?= __('Critical') ?></option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class='form-group form-inline'>
-                                    <label for='invert' class='col-sm-3 col-md-2 control-label' title="Alert when this rule doesn't match.">Invert rule match </label>
-                                    <div class='col-sm-2' title="Alert when this rule doesn't match.">
+                                    <label for='invert' class='col-sm-3 col-md-2 control-label' title="<?= e(__("Alert when this rule doesn't match.")) ?>"><?= __('Invert rule match') ?> </label>
+                                    <div class='col-sm-2' title="<?= e(__("Alert when this rule doesn't match.")) ?>">
                                         <input type='checkbox' name='invert' id='invert'>
                                     </div>
-                                    <label for='mute' class='col-sm-3 col-md-3 control-label' title="Suppress all notifications for this rule (alerts still appear in the Web UI)." style="vertical-align: top;">Mute alerts </label>
-                                    <div class='col-sm-2' title="Suppress all notifications for this rule (alerts still appear in the Web UI).">
+                                    <label for='mute' class='col-sm-3 col-md-3 control-label' title="<?= e(__("Suppress all notifications for this rule (alerts still appear in the Web UI).")) ?>" style="vertical-align: top;"><?= __('Mute alerts') ?> </label>
+                                    <div class='col-sm-2' title="<?= e(__("Suppress all notifications for this rule (alerts still appear in the Web UI).")) ?>">
                                         <input type='checkbox' name='mute' id='mute'>
                                     </div>
                                 </div>
                                 <div class="form-group form-inline">
-                                    <label for='recovery' class='col-sm-3 col-md-2 control-label' title="Issue recovery alerts.">Recovery alerts </label>
-                                    <div class='col-sm-2' title="Issue recovery alerts.">
+                                    <label for='recovery' class='col-sm-3 col-md-2 control-label' title="<?= e(__("Issue recovery alerts.")) ?>"><?= __('Recovery alerts') ?> </label>
+                                    <div class='col-sm-2' title="<?= e(__("Issue recovery alerts.")) ?>">
                                         <input type='checkbox' name='recovery' id='recovery'>
                                     </div>
-                                    <label for='acknowledgement' class='col-sm-3 col-md-3 control-label' title="Issue acknowledgement alerts." style="vertical-align: top;">Acknowledgement alerts </label>
-                                    <div class='col-sm-2' title="Issue acknowledgement alerts.">
+                                    <label for='acknowledgement' class='col-sm-3 col-md-3 control-label' title="<?= e(__("Issue acknowledgement alerts.")) ?>" style="vertical-align: top;"><?= __('Acknowledgement alerts') ?> </label>
+                                    <div class='col-sm-2' title="<?= e(__("Issue acknowledgement alerts.")) ?>">
                                         <input type='checkbox' name='acknowledgement' id='acknowledgement'>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="alert_operation_id" class="col-sm-3 col-md-2 control-label" title="Notification behaviour (escalation, transports). Configure under Alerts → Operations.">Operation </label>
+                                    <label for="alert_operation_id" class="col-sm-3 col-md-2 control-label" title="<?= e(__("Notification behaviour (escalation, transports). Configure under Alerts \u2192 Operations.")) ?>"><?= __('Operation') ?> </label>
                                     <div class="col-sm-9 col-md-10">
                                         <input type="hidden" name="alert_operation_id" id="alert_operation_id_input" value="">
                                         <select id="alert_operation_id" class="form-control" style="width: 100%;" data-placeholder="<?php echo __('None (suppress notifications)'); ?>">
@@ -114,23 +114,23 @@ $default_invert_map = LibrenmsConfig::get('alert_rule.invert_map');
                                     </div>
                                 </div>
                                 <div class="form-group form-inline">
-                                    <label for='maps' class='col-sm-3 col-md-2 control-label' title="Restricts this alert rule to the selected devices, groups and locations.">Match devices, groups and locations list </label>
+                                    <label for='maps' class='col-sm-3 col-md-2 control-label' title="<?= e(__("Restricts this alert rule to the selected devices, groups and locations.")) ?>"><?= __('Match devices, groups and locations list') ?> </label>
                                     <div class="col-sm-7" style="width: 56%;">
                                         <select id="maps" name="maps[]" class="form-control" multiple="multiple"></select>
                                     </div>
                                     <div>
-                                        <label for='invert_map' class='col-md-1' style="width: 14.1333%;" text-align="left" title="If ON, alert rule check will run on all devices except the selected devices and groups.">All devices except in list </label>
+                                        <label for='invert_map' class='col-md-1' style="width: 14.1333%;" text-align="left" title="<?= e(__("If ON, alert rule check will run on all devices except the selected devices and groups.")) ?>"><?= __('All devices except in list') ?> </label>
                                         <input type='checkbox' name='invert_map' id='invert_map'>
                                     </div>
                                 </div>
-                                <div class='form-group' title="A link to some documentation on how to handle this alert. This will be included in notifications.">
-                                    <label for='proc' class='col-sm-3 col-md-2 control-label'>Procedure URL </label>
+                                <div class='form-group' title="<?= e(__("A link to some documentation on how to handle this alert. This will be included in notifications.")) ?>">
+                                    <label for='proc' class='col-sm-3 col-md-2 control-label'><?= __('Procedure URL') ?> </label>
                                     <div class='col-sm-9 col-md-10'>
                                         <input type='text' id='proc' name='proc' class='form-control validation' pattern='(http|https)://.*' maxlength='80'>
                                     </div>
                                 </div>
-                                <div class='form-group' title="A brief description for this alert rule">
-                                    <label for='notes' class='col-sm-3 col-md-2 control-label'>Notes</label>
+                                <div class='form-group' title="<?= e(__("A brief description for this alert rule")) ?>">
+                                    <label for='notes' class='col-sm-3 col-md-2 control-label'><?= __('Notes') ?></label>
                                     <div class='col-sm-9 col-md-10'>
                                         <textarea class="form-control" rows="6" name="notes" id='notes'></textarea>
                                     </div>
@@ -138,13 +138,13 @@ $default_invert_map = LibrenmsConfig::get('alert_rule.invert_map');
                             </div>
                             <div role="tabpanel" class="tab-pane" id="advanced">
                                 <div class="form-group">
-                                    <label for="override_query" class="col-sm-3 col-md-2 control-label">Override SQL</label>
+                                    <label for="override_query" class="col-sm-3 col-md-2 control-label"><?= __('Override SQL') ?></label>
                                     <div class="col-sm-9 col-md-10">
                                         <input type='checkbox' name='override_query' id='override_query'>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="adv_query" class="col-sm-3 col-md-2 control-label">Query</label>
+                                    <label for="adv_query" class="col-sm-3 col-md-2 control-label"><?= __('Query') ?></label>
                                     <div class="col-sm-9 col-md-10">
                                         <textarea class="form-control code" rows="6" name="adv_query" id='adv_query' style="font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;";></textarea>
                                     </div>
@@ -154,7 +154,7 @@ $default_invert_map = LibrenmsConfig::get('alert_rule.invert_map');
                         <div class="form-group">
                             <div class="col-sm-12 text-center">
                                 <button type="button" class="btn btn-success" id="btn-save" name="save-alert">
-                                    Save Rule
+                                    <?= __('Save Rule') ?>
                                 </button>
                             </div>
                         </div>

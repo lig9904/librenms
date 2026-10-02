@@ -2,25 +2,25 @@
 
 $no_refresh = true;
 
-$pagetitle[] = 'Search';
+$pagetitle[] = __('Search');
 
 $sections = [
-    'ipv4' => 'IPv4 Address',
-    'ipv6' => 'IPv6 Address',
-    'mac' => 'MAC Address',
-    'arp' => 'ARP Table',
-    'fdb' => 'FDB Table',
+    'ipv4' => __('IPv4 Address'),
+    'ipv6' => __('IPv6 Address'),
+    'mac' => __('MAC Address'),
+    'arp' => __('ARP Table'),
+    'fdb' => __('FDB Table'),
 ];
 
 if (dbFetchCell('SELECT 1 from `packages` LIMIT 1')) {
-    $sections['packages'] = 'Packages';
+    $sections['packages'] = __('Packages');
 }
 
 $search_type = basename($vars['search'] ?? 'ipv4');
 
 print_optionbar_start('', '');
 
-echo '<span style="font-weight: bold;">Search</span> &#187; ';
+echo '<span style="font-weight: bold;">' . e(__('Search')) . '</span> &#187; ';
 
 $sep = '';
 foreach ($sections as $type => $texttype) {
@@ -44,5 +44,5 @@ print_optionbar_end();
 if (file_exists("includes/html/pages/search/$search_type.inc.php")) {
     include "includes/html/pages/search/$search_type.inc.php";
 } else {
-    echo 'Unknown search type';
+    echo e(__('Unknown search type'));
 }

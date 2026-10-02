@@ -21,7 +21,7 @@
                            class="form-control"
                            name="searchVlanNumber"
                            value="{{ $data['searchVlanNumber'] ?? '' }}"
-                           placeholder="VLAN Number..."
+                           placeholder="{{ __('VLAN Number...') }}"
                            style="width: 150px;">
                 </div>
 
@@ -30,17 +30,17 @@
                            class="form-control"
                            name="searchVlanName"
                            value="{{ $data['searchVlanName'] ?? '' }}"
-                           placeholder="VLAN Name..."
+                           placeholder="{{ __('VLAN Name...') }}"
                            style="width: 200px;">
                 </div>
 
                 <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-search"></i> Filter
+                    <i class="fa fa-search"></i> {{ __('Filter') }}
                 </button>
 
                 @if($data['searchVlanNumber'] || $data['searchVlanName'])
                     <a href="{{ request()->url() }}" class="btn btn-default" style="margin-left: 5px;">
-                        <i class="fa fa-times"></i> Clear
+                        <i class="fa fa-times"></i> {{ __('Clear') }}
                     </a>
                 @endif
             </form>
@@ -89,9 +89,9 @@
                 <td colspan="3" class="text-center" style="padding: 20px;">
                     <em>
                         @if($data['searchVlanNumber'] || $data['searchVlanName'])
-                            No VLANs match your filter criteria.
+                            {{ __('No VLANs match your filter criteria.') }}
                         @else
-                            No VLANs found for this device.
+                            {{ __('No VLANs found for this device.') }}
                         @endif
                     </em>
                 </td>
@@ -104,11 +104,10 @@
     @if(($data['searchVlanNumber'] || $data['searchVlanName']) && count($data['vlans']) > 0)
         <div class="alert alert-success">
             <i class="fa fa-check-circle"></i>
-            Showing {{ count($data['vlans']) }} VLAN{{ count($data['vlans']) !== 1 ? 's' : '' }} matching your criteria
+            {{ __('Showing :count VLANs matching your criteria', ['count' => count($data['vlans'])]) }}
         </div>
     @endif
 </x-device.page>
 @endsection
-
 
 

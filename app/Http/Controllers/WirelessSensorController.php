@@ -20,7 +20,7 @@ class WirelessSensorController
             abort(404);
         }
 
-        $title = 'Wireless :: ' . __('wireless.' . $metric . '.short');
+        $title = __('Wireless') . ' :: ' . __('wireless.' . $metric . '.short');
         $views = [
             'graphs' => ['text' => __('Graphs'), 'link' => $request->fullUrlWithQuery(['view' => 'graphs'])],
             'detail' => ['text' => __('No Graphs'), 'link' => $request->fullUrlWithoutQuery('view')],

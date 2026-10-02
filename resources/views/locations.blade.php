@@ -38,7 +38,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="edit-location-title">Edit Location :: <span></span></h4>
+                    <h4 class="modal-title" id="edit-location-title">{{ __('Edit Location') }} :: <span></span></h4>
                 </div>
                 <div class="modal-body">
                     <div id="location-edit-map" style="width: 568px; height: 400px;"></div>
@@ -80,6 +80,14 @@
         $(document).ready(function () {
             locations_grid = $("#locations").bootgrid({
                 ajax: true,
+                labels: @js([
+                    'all' => __('All'),
+                    'infos' => __('Showing ' . '{' . '{ctx.start}} to ' . '{' . '{ctx.end}} of ' . '{' . '{ctx.total}} entries'),
+                    'loading' => __('Loading...'),
+                    'noResults' => __('No results found!'),
+                    'refresh' => __('Refresh'),
+                    'search' => __('Search'),
+                ]),
                 rowCount: [25, 50, 100, -1],
                 url: "{{ route('table.location') }}",
                 formatters: {

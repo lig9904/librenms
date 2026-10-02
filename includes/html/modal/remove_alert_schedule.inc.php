@@ -19,16 +19,16 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h5 class="modal-title" id="Create">Delete maintenance</h5>
+                <h5 class="modal-title" id="Create"><?= __('Delete maintenance') ?></h5>
             </div>
             <div class="modal-body">
-                <p>If you would like to remove this maintenance then please click Delete.</p>
+                <p><?= __('If you would like to remove this maintenance then please click Delete.') ?></p>
             </div>
             <div class="modal-footer">
                 <form method="post" role="form" id="sched-del" class="form-horizontal schedule-maintenance-del">
                     <?php echo csrf_field() ?>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-danger danger" id="sched-maintenance-removal" data-target="sched-maintenance-removal">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><?= __('Cancel') ?></button>
+                    <button type="submit" class="btn btn-danger danger" id="sched-maintenance-removal" data-target="sched-maintenance-removal"><?= __('Delete') ?></button>
                     <input type="hidden" name="del_schedule_id" id="del_schedule_id">
                     <input type="hidden" name="type" value="schedule-maintenance">
                     <input type="hidden" name="sub_type" value="del-maintenance">
@@ -56,7 +56,7 @@ $('#sched-maintenance-removal').on("click", function(e) {
             }
         },
         error: function(){
-            $("#response").html('<div class="alert alert-info">An error occurred.</div>');
+            $("#response").html('<div class="alert alert-info"><?= __('An error occurred.') ?></div>');
         }
     });
 });

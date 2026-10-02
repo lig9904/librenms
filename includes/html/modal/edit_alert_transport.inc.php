@@ -21,21 +21,21 @@ use LibreNMS\Alert\Transport;
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h5 class="modal-title" id="Edit-transport">Alert Transport :: <a target="_blank" href="https://docs.librenms.org/Alerting/">Docs <i class="fa fa-book fa-1x"></i></a> </h5>
+                    <h5 class="modal-title" id="Edit-transport"><?= __('Alert Transport') ?> :: <a target="_blank" href="https://docs.librenms.org/Alerting/"><?= __('Docs') ?> <i class="fa fa-book fa-1x"></i></a> </h5>
                 </div>
                 <div class="modal-body">
                     <form method="post" role="form" id="transports" class="form-horizontal transports-form">
                         <?php echo csrf_field() ?>
                         <input type="hidden" name="transport_id" id="transport_id" value="">
                         <input type="hidden" name="type" id="type" value="alert-transports">
-                        <div class='form-group' title="The description of this alert transport.">
-                            <label for='name' class='col-sm-3 col-md-2 control-label'>Transport name: </label>
+                        <div class='form-group' title="<?= e(__("The description of this alert transport.")) ?>">
+                            <label for='name' class='col-sm-3 col-md-2 control-label'><?= __('Transport name') ?>: </label>
                             <div class='col-sm-9 col-md-10'>
                                 <input type='text' id='name' name='name' class='form-control validation' maxlength='200' required>
                             </div>
                         </div>
-                        <div class="form-group" title="The type of transport.">
-                            <label for='transport-choice' class='col-sm-3 col-md-2 control-label'>Transport type: </label>
+                        <div class="form-group" title="<?= e(__("The type of transport.")) ?>">
+                            <label for='transport-choice' class='col-sm-3 col-md-2 control-label'><?= __('Transport type') ?>: </label>
                             <div class="col-sm-9 col-md-10">
                                 <select name='transport-choice' id='transport-choice' class='form-control' style="width: auto">
     <?php
@@ -48,8 +48,8 @@ use LibreNMS\Alert\Transport;
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group" title="The transport is default.">
-                            <label for="default" class="col-sm-3 col-md-2 control-label">Default Alert: </label>
+                        <div class="form-group" title="<?= e(__("The transport is default.")) ?>">
+                            <label for="default" class="col-sm-3 col-md-2 control-label"><?= __('Default Alert') ?>: </label>
                             <div class="col-sm-2">
                                 <input type="checkbox" name="is_default" id="is_default">
                             </div>
@@ -122,7 +122,7 @@ use LibreNMS\Alert\Transport;
         echo '<div class="form-group">';
         echo '<div class="col-sm-12 text-center">';
         echo '<button type="button" class="btn btn-success btn-save" name="save-transport">';
-        echo 'Save Transport';
+        echo __('Save Transport');
         echo '</button>';
         echo '</div>';
         echo '</div>';
@@ -141,16 +141,16 @@ use LibreNMS\Alert\Transport;
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h5 class="modal-title" id="Delete">Confirm Transport Delete</h5>
+                    <h5 class="modal-title" id="Delete"><?= __('Confirm Transport Delete') ?></h5>
                 </div>
                 <div class="modal-body">
-                    <p>If you would like to remove this alert transport then please click Delete.</p>
+                    <p><?= __('If you would like to remove this alert transport then please click Delete.') ?></p>
                 </div>
                 <div class="modal-footer">
                     <form role="form" class="remove_transport_form">
                         <?php echo csrf_field() ?>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-danger danger" id="remove-alert-transport" data-target="remove-alert-transport">Delete</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><?= __('Cancel') ?></button>
+                        <button type="submit" class="btn btn-danger danger" id="remove-alert-transport" data-target="remove-alert-transport"><?= __('Delete') ?></button>
                         <input type="hidden" name="transport_id" id="delete_transport_id" value="">
                         <input type="hidden" name="confirm" id="confirm" value="yes">
                     </form>

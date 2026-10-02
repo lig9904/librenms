@@ -39,7 +39,7 @@ $alert_severities = [
 ];
 $admin_verbose_details = '';
 if (Gate::allows('alert.detail')) {
-    $admin_verbose_details = '<th data-column-id="verbose_details" data-sortable="false">Details</th>';
+    $admin_verbose_details = '<th data-column-id="verbose_details" data-sortable="false">' . __('Details') . '</th>';
 }
 
 //if( defined('SHOW_SETTINGS') || empty($widget_settings) ) {
@@ -237,13 +237,13 @@ if (defined('SHOW_SETTINGS')) {
         <thead>
             <tr>
                 <th data-column-id="severity"></th>
-                <th data-column-id="timestamp">Timestamp</th>
-                <th data-column-id="rule">Rule</th>
+                <th data-column-id="timestamp">' . __('Timestamp') . '</th>
+                <th data-column-id="rule">' . __('Rule') . '</th>
                 <th data-column-id="details" data-sortable="false"></th>
-                <th data-column-id="hostname">Hostname</th>
-                <th data-column-id="location">Location</th>
+                <th data-column-id="hostname">' . __('Hostname') . '</th>
+                <th data-column-id="location">' . __('Location') . '</th>
                 <th data-column-id="ack_ico" data-sortable="false">ACK</th>
-                <th data-column-id="notes" data-sortable="false">Notes</th>
+                <th data-column-id="notes" data-sortable="false">' . __('Notes') . '</th>
                 ' . $admin_verbose_details . '';
 
     if ($proc == '1') {

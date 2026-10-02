@@ -36,7 +36,7 @@
             try {
                 document.execCommand('copy');
             } catch (err) {
-                alert('Unsupported Browser!');
+                alert(@json(__('Unsupported Browser!')));
             }
         };
 

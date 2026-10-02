@@ -9,25 +9,25 @@
  * option) any later version.  Please see LICENSE.txt at the top level of
  * the source code distribution for details.
  */
-$pagetitle[] = 'RIPE NCC - API Tools';
+$pagetitle[] = __('RIPE NCC - API Tools');
 $no_refresh = true;
 
 ?>
-<h3> RIPE NCC API Tools </h3>
+<h3><?php echo e(__('RIPE NCC API Tools')); ?></h3>
 <hr>
 <form class="form-horizontal" action="" method="post">
     <?php echo csrf_field() ?>
     <div class="radio">
-        <label><input type="radio" name="data_radio" value="whois" checked>Whois</label>
+        <label><input type="radio" name="data_radio" value="whois" checked><?php echo e(__('Whois')); ?></label>
     </div>
     <div class="radio">
-        <label><input type="radio" name="data_radio" value="abuse-contact-finder">Abuse Contact Finder</label>
+        <label><input type="radio" name="data_radio" value="abuse-contact-finder"><?php echo e(__('Abuse Contact Finder')); ?></label>
     </div>
     <br />
     <div class="input-group">
-        <input type="text" class="form-control" id="input-parameter" placeholder="IP, ASN etc.">
+        <input type="text" class="form-control" id="input-parameter" placeholder="<?php echo e(__('IP, ASN etc.')); ?>">
         <span class="input-group-btn">
-        <button type="submit" name="btn-query" id="btn-query" class="btn btn-primary">Query</button>
+        <button type="submit" name="btn-query" id="btn-query" class="btn btn-primary"><?php echo e(__('Query')); ?></button>
         </span>
     </div>
 </form>
@@ -71,7 +71,7 @@ $no_refresh = true;
                         errors.push(json[attrib]);
                     }
 
-                    toastr.error('Error: ' + errors.join("<br />"));
+                    toastr.error(<?php echo json_encode(__('Error'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT); ?> + ': ' + errors.join("<br />"));
                 } else {
                     toastr.error(data.responseJSON.message);
                 }

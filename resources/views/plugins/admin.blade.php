@@ -11,8 +11,8 @@
 
             <table class="table table-condensed">
                 <tr>
-                    <th>Name</th>
-                    <th>Action</th>
+                    <th>{{ __('Name') }}</th>
+                    <th>{{ __('Action') }}</th>
                 </tr>
                 @foreach($plugins as $plugin)
                     <tr class="{{ $plugin->plugin_active ? 'bg-success' : 'bg-danger' }}">

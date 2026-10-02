@@ -32,16 +32,16 @@ use LibreNMS\Alerting\QueryBuilderParser;
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h5 class="modal-title" id="search_alert_rule_list">Running Alert rules</h5>
+                <h5 class="modal-title" id="search_alert_rule_list"><?= __('Running Alert rules') ?></h5>
             </div>
             <div class="modal-body">
                 <div class="table-responsive">
                     <table id="alert_rule_list" class="table table-condensed table-hover">
                         <thead>
                             <tr>
-                                <th data-column-id="alert_name" data-width="200px">Name</th>
-                                <th data-column-id="alert_rule">Rule</th>
-                                <th data-column-id="alert_severity">Severity</th>
+                                <th data-column-id="alert_name" data-width="200px"><?= __('Name') ?></th>
+                                <th data-column-id="alert_rule"><?= __('Rule') ?></th>
+                                <th data-column-id="alert_severity"><?= __('Severity') ?></th>
                                 <td data-column-id="alert_action" data-formatter="alert_action"></td>
                             </tr>
                         </thead>
@@ -69,7 +69,7 @@ use LibreNMS\Alerting\QueryBuilderParser;
                             caseSensitive: false,
                             formatters: {
                                 "alert_action": function (column, row) {
-                                    return "<button type=\"button\" id=\"alert_rule_from_list\" name=\"alert_rule_from_list\" data-rule_id=\"" + row.alert_action + "\" class=\"btn btn-sm btn-primary alert_rule_from_list\">Select</button";
+                                    return "<button type=\"button\" id=\"alert_rule_from_list\" name=\"alert_rule_from_list\" data-rule_id=\"" + row.alert_action + "\" class=\"btn btn-sm btn-primary alert_rule_from_list\"><?= __('Select') ?></button";
                                 }
                             },
                             templates: {

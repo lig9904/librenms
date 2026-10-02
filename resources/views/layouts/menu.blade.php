@@ -482,7 +482,7 @@
                 @can('viewAny', \App\Models\WirelessSensor::class)
                 @if($wireless_menu->isNotEmpty())
                     <li class="dropdown">
-                        <a href="{{ url('wireless') }}" class="dropdown-toggle" data-hover="dropdown"
+                        <a href="{{ url('wireless/metric=' . $wireless_menu->first()->sensor_class->value) }}" class="dropdown-toggle" data-hover="dropdown"
                            data-toggle="dropdown"><i class="fa fa-wifi fa-fw fa-lg fa-nav-icons"
                                                      aria-hidden="true"></i> <span
                                 class="tw:md:hidden tw:2xl:inline-block">{{ __('wireless.title') }}</span></a>

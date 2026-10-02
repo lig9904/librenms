@@ -44,7 +44,7 @@
                                 <a href="{{ route('devices', ['filter' => ['groups.id' => ['eq' => $device_group->id]]]) }}">{{ $device_group->devices_count }}</a>
                             </td>
                             <td>
-                                <a href="{{ route('ports', ['filter' => ['device.groups.id' => ['eq' => $device_group->id]]]) }}">View</a>
+                                <a href="{{ route('ports', ['filter' => ['device.groups.id' => ['eq' => $device_group->id]]]) }}">{{ __('View') }}</a>
                             </td>
                             <td>{{ $device_group->type == 'dynamic' ? $device_group->getParser()->toSql(false) : '' }}</td>
                             <td>
@@ -111,7 +111,7 @@
                     }
                 },
                 error:function(){
-                    toastr.error('An error occured setting this device Group to be rediscovered');
+                        toastr.error(@js(__('Failed to rediscover device group')));
                 }
             });
         }

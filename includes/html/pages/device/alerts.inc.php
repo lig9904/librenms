@@ -5,12 +5,12 @@ $vars['section'] ??= 'alerts';
 echo '<br>';
 echo '<div class="panel panel-default">';
 echo '<div class="panel-heading">';
-echo '<strong>Alerts</strong>  &#187; ';
+echo '<strong>' . __('Alerts') . '</strong>  &#187; ';
 
 if ($vars['section'] == 'alerts') {
     echo '<span class="pagemenu-selected">';
 }
-echo generate_link('Active alerts', $vars, ['section' => 'alerts']);
+echo generate_link(__('Active alerts'), $vars, ['section' => 'alerts']);
 if ($vars['section'] == 'alerts') {
     echo '</span>';
 }
@@ -20,7 +20,7 @@ echo ' | ';
 if ($vars['section'] == 'alert-log') {
     echo '<span class="pagemenu-selected">';
 }
-echo generate_link('Alert history', $vars, ['section' => 'alert-log']);
+echo generate_link(__('Alert history'), $vars, ['section' => 'alert-log']);
 if ($vars['section'] == 'alert-log') {
     echo '</span>';
 }
@@ -46,7 +46,7 @@ switch ($vars['section']) {
 
     default:
         echo '</div>';
-        echo 'Unknown section';
+        echo __('Unknown section');
         break;
 }
 

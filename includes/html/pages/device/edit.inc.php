@@ -11,54 +11,54 @@ $link_array = ['page' => 'device',
     'tab' => 'edit', ];
 
 if (Gate::denies('device.update')) {
-    print_error('Insufficient Privileges');
+    print_error(__('Insufficient Privileges'));
 } else {
-    $panes['device'] = 'Device Settings';
+    $panes['device'] = __('Device Settings');
     $panes['snmp'] = 'SNMP';
     if (! $device['snmp_disable']) {
-        $panes['ports'] = 'Port Settings';
+        $panes['ports'] = __('Port Settings');
     }
 
     if (BgpPeer::where('device_id', $device['device_id'])->exists()) {
-        $panes['routing'] = 'Routing';
+        $panes['routing'] = __('Routing');
     }
 
     if (count(\App\Facades\LibrenmsConfig::get("os.{$device['os']}.icons", []))) {
-        $panes['icon'] = 'Icon';
+        $panes['icon'] = __('Icon');
     }
 
     if (! $device['snmp_disable']) {
-        $panes['apps'] = 'Applications';
+        $panes['apps'] = __('Applications');
     }
-    $panes['alert-rules'] = 'Alert Rules';
+    $panes['alert-rules'] = __('Alert Rules');
     if (! $device['snmp_disable']) {
-        $panes['modules'] = 'Modules';
+        $panes['modules'] = __('Modules');
     }
 
     if (\App\Facades\LibrenmsConfig::get('show_services')) {
-        $panes['services'] = 'Services';
+        $panes['services'] = __('Services');
     }
 
     $panes['ipmi'] = 'IPMI';
 
     if (Sensor::where('device_id', $device['device_id'])->where('sensor_deleted', 0)->exists()) {
-        $panes['health'] = 'Health';
+        $panes['health'] = __('Health');
     }
 
     if (WirelessSensor::where('device_id', $device['device_id'])->where('sensor_deleted', 0)->exists()) {
-        $panes['wireless-sensors'] = 'Wireless Sensors';
+        $panes['wireless-sensors'] = __('Wireless Sensors');
     }
 
     if (! $device['snmp_disable']) {
-        $panes['storage'] = 'Storage';
-        $panes['processors'] = 'Processors';
-        $panes['mempools'] = 'Memory';
+        $panes['storage'] = __('Storage');
+        $panes['processors'] = __('Processors');
+        $panes['mempools'] = __('Memory');
     }
-    $panes['misc'] = 'Misc';
+    $panes['misc'] = __('Misc');
 
-    $panes['component'] = 'Components';
+    $panes['component'] = __('Components');
 
-    $panes['customoid'] = 'Custom OID';
+    $panes['customoid'] = __('Custom OID');
 
     print_optionbar_start();
 
@@ -91,4 +91,4 @@ if (Gate::denies('device.update')) {
     }
 }
 
-$pagetitle[] = 'Settings';
+$pagetitle[] = __('Settings');
