@@ -64,7 +64,7 @@
         <script>
             Object.assign($.fn.bootgrid.Constructor.defaults.labels, {
                 all: @json(__('All')),
-                infos: @json(__('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries')),
+                infos: @json(__('Showing ' . '{' . '{ctx.start}} to ' . '{' . '{ctx.end}} of ' . '{' . '{ctx.total}} entries')),
                 loading: @json(__('Loading...')),
                 noResults: @json(__('No results found!')),
                 refresh: @json(__('Refresh')),
