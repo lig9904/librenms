@@ -2,6 +2,8 @@
 
 return [
     'settings' => [
+        'title' => '轮询器设置',
+        'advanced' => '高级',
         'settings' => [
             'poller_groups' => [
                 'description' => '分配的组',

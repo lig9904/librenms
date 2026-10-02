@@ -26,8 +26,8 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                {{ $t('Poller Settings') }}
-                <span class="pull-right">Advanced <toggle-button v-model="advanced"></toggle-button></span>
+                {{ $t('poller.settings.title') }}
+                <span class="pull-right">{{ $t('poller.settings.advanced') }} <toggle-button v-model="advanced"></toggle-button></span>
             </h3>
         </div>
         <div class="panel-body">

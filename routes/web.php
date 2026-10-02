@@ -317,6 +317,7 @@ Route::middleware(['auth'])->group(function (): void {
     Route::get('plugin/{plugin:plugin_name}', PluginPageController::class)->name('plugin.page');
 
     Route::get('health/{metric?}/{legacyview?}', [SensorController::class, 'index'])->name('sensor.index');
+    Route::redirect('wireless', '/wireless/metric=ap-count');
     Route::get('wireless/{metric}/{legacyview?}', [WirelessSensorController::class, 'index'])->name('wireless.index');
 
     // old route redirects

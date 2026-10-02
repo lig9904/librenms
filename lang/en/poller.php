@@ -2,6 +2,8 @@
 
 return [
     'settings' => [
+        'title' => 'Poller Settings',
+        'advanced' => 'Advanced',
         'settings' => [
             'poller_groups' => [
                 'description' => 'Assigned Groups',

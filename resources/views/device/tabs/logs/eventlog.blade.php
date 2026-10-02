@@ -30,6 +30,14 @@
     <script>
         var eventlog_grid = $("#eventlog").bootgrid({
             ajax: true,
+            labels: @json([
+                'all' => __('All'),
+                'infos' => __('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries'),
+                'loading' => __('Loading...'),
+                'noResults' => __('No results found!'),
+                'refresh' => __('Refresh'),
+                'search' => __('Search'),
+            ]),
             rowCount: [50, 100, 250, -1],
             post: function () {
                 return {
@@ -46,21 +54,21 @@
 
             @if($filter_device)
                 '<div class="form-group">' +
-                '<label><strong>Device&nbsp;&nbsp;</strong></label>' +
+                '<label><strong>' + @json(__('Device')) + '&nbsp;&nbsp;</strong></label>' +
                 '<select name="device" id="device" class="form-control">' +
-                '<option value="">All Devices</option>' +
+                '<option value="">' + @json(__('All Devices')) + '</option>' +
                 '<option value=$device->device_id>" . $device->displayName() . "</option>' +
                 '</select>' +
                 '</div>&nbsp;&nbsp;&nbsp;&nbsp;' +
             @endif
 
-            '<div class="form-group"><label><strong>Type&nbsp;&nbsp;</strong></label>' +
+            '<div class="form-group"><label><strong>' + @json(__('Type')) + '&nbsp;&nbsp;</strong></label>' +
             '<select name="eventtype" id="eventtype" class="form-control input-sm">' +
-                '<option value="">All types</option>' +
+                '<option value="">' + @json(__('All types')) + '</option>' +
                 '<option value=\"' + @json($eventtype) + '\">' + @json($eventtype) + '</option>' +
             '</select>' +
             '</div>&nbsp;&nbsp;' +
-            '<button type="submit" class="btn btn-default">Filter</button>' +
+            '<button type="submit" class="btn btn-default">' + @json(__('Filter')) + '</button>' +
             '</form>' +
             '</div>'
         );
@@ -73,6 +81,6 @@
                 term: params.term,
                 page: params.page || 1
             }
-        }, @json($eventtype), 'All Types');
+        }, @json($eventtype), @json(__('All Types')));
     </script>
 @endsection

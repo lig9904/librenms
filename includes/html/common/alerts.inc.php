@@ -242,7 +242,7 @@ if (defined('SHOW_SETTINGS')) {
                 <th data-column-id="details" data-sortable="false"></th>
                 <th data-column-id="hostname">' . __('Hostname') . '</th>
                 <th data-column-id="location">' . __('Location') . '</th>
-                <th data-column-id="ack_ico" data-sortable="false">ACK</th>
+                <th data-column-id="ack_ico" data-sortable="false">' . __('ACK') . '</th>
                 <th data-column-id="notes" data-sortable="false">' . __('Notes') . '</th>
                 ' . $admin_verbose_details . '';
 
@@ -258,6 +258,14 @@ if (defined('SHOW_SETTINGS')) {
 <script>
 var alerts_grid = $("#alerts_' . $unique_id . '").bootgrid({
     ajax: true,
+    labels: ' . json_encode([
+        'all' => __('All'),
+        'infos' => __('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries'),
+        'loading' => __('Loading...'),
+        'noResults' => __('No results found!'),
+        'refresh' => __('Refresh'),
+        'search' => __('Search'),
+    ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ',
     post: function ()
     {
         return {

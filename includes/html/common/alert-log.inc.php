@@ -76,6 +76,14 @@ $common_output[] = '
 document.addEventListener("DOMContentLoaded", function () {
     var grid = $("#alertlog").bootgrid({
         ajax: true,
+        labels: ' . json_encode([
+            'all' => __('All'),
+            'infos' => __('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries'),
+            'loading' => __('Loading...'),
+            'noResults' => __('No results found!'),
+            'refresh' => __('Refresh'),
+            'search' => __('Search'),
+        ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ',
         rowCount: [50, 100, 250, -1],
         templates: {
             header: \'<div id="{{ctx.id}}" class="{{css.header}}"><div class="row"> \
