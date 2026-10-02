@@ -176,24 +176,24 @@ return [
                 'help' => '预设认可值到告警解除',
             ],
             'admins' => [
-                'description' => '向管理员发送告警',
-                'help' => '管理员告警',
+                'description' => '向管理员发送告警（已弃用）',
+                'help' => '已弃用，请改用邮件告警通知渠道。',
             ],
             'default_copy' => [
-                'description' => '复制所有的邮件告警给预设连络人',
-                'help' => '复制所有的邮件告警给预设连络人',
+                'description' => '抄送所有邮件告警给默认联系人（已弃用）',
+                'help' => '已弃用，请改用邮件告警通知渠道。',
             ],
             'default_if_none' => [
-                'description' => '无法在 WebUI 设置？',
-                'help' => '如果没有找到其它连络人，请把邮件发送到预设连络人',
+                'description' => '无其他联系人时使用默认联系人（已弃用）',
+                'help' => '已弃用，请改用邮件告警通知渠道。',
             ],
             'default_mail' => [
-                'description' => '预设连络人',
-                'help' => '预设连络人邮件地址',
+                'description' => '默认联系人（已弃用）',
+                'help' => '已弃用，请改用邮件告警通知渠道。',
             ],
             'default_only' => [
-                'description' => '只发送告警给预设连络人',
-                'help' => '只发送告警给预设邮件连络人',
+                'description' => '仅向默认联系人发送告警（已弃用）',
+                'help' => '已弃用，请改用邮件告警通知渠道。',
             ],
             'disable' => [
                 'description' => '停用告警',
@@ -204,12 +204,12 @@ return [
                 'help' => '用户确认告警时发送通知。',
             ],
             'fixed-contacts' => [
-                'description' => '更新联系电子邮件地址未得到认可',
-                'help' => '如果设为TRUE，任何对sysContact或用户电子邮件的更改在告警激活期间将不被采纳。',
+                'description' => '活动告警期间固定联系人',
+                'help' => '启用后，告警处于活动状态期间，对 sysContact 或用户邮箱的修改不会影响该告警的联系人。',
             ],
             'globals' => [
-                'description' => '只发送告警给只读用户',
-                'help' => '只发送告警给只读管理员',
+                'description' => '向只读用户发送告警（已弃用）',
+                'help' => '已弃用，请改用邮件告警通知渠道。',
             ],
             'scheduled_maintenance_default_behavior' => [
                 'description' => '计划维护的默认行为',
@@ -221,8 +221,8 @@ return [
                 ],
             ],
             'syscontact' => [
-                'description' => '发送告警给 sysContact',
-                'help' => '发送告警邮件给 SNMP 中的 sysContact',
+                'description' => '向 sysContact 发送告警（已弃用）',
+                'help' => '已弃用，请改用邮件告警通知渠道。',
             ],
             'transports' => [
                 'mail' => [
@@ -232,16 +232,16 @@ return [
             ],
             'tolerance_window' => [
                 'description' => 'cron 容错范围',
-                'help' => 'Tolerance window in seconds',
+                'help' => 'cron 容错时间窗口，单位为秒。',
             ],
             'users' => [
-                'description' => '发送告警给一般用户',
-                'help' => '告警通知一般用户',
+                'description' => '向普通用户发送告警（已弃用）',
+                'help' => '已弃用，请改用邮件告警通知渠道。',
             ],
         ],
         'alert_log_purge' => [
             'description' => '告警记录项目大于',
-            'help' => 'Cleanup done by daily.sh',
+            'help' => '由 daily.sh 执行清理。',
         ],
         'discovery_on_reboot' => [
             'description' => '设备重启后执行发现',
@@ -295,7 +295,7 @@ return [
         ],
         'allow_unauth_graphs_cidr' => [
             'description' => '允许指定网络访问图表',
-            'help' => '允许指定网络可以在未登录授权查看图表 (若未启用 允许未登录访问图表 则忽略此设置)',
+            'help' => '允许指定网段无需登录即可查看图表。若已启用“允许未登录访问图表”，则对所有来源开放，此网段限制不生效。',
         ],
         'apps' => [
             'powerdns-recursor' => [
@@ -357,7 +357,7 @@ return [
             'help' => '组和用户必须位于此 DN 下。例如：dc=example,dc=com',
         ],
         'auth_ad_check_certificates' => [
-            'description' => '检查凭证',
+            'description' => '验证服务器证书',
             'help' => '检查证书的有效性。一些服务器使用自签名证书，禁用此选项可允许此类证书。',
         ],
         'auth_ad_group_filter' => [
@@ -704,8 +704,8 @@ return [
             ],
         ],
         'http_proxy' => [
-            'description' => 'HTTP(S) 代理',
-            'help' => '如果环境变量http_proxy或https_proxy不可用，可将此设置作为回退。',
+            'description' => 'HTTP 代理',
+            'help' => '当 http_proxy 环境变量不可用时，使用此设置作为 HTTP 代理。HTTPS 代理请单独设置。',
         ],
         'ipmitool' => [
             'description' => 'ipmtool 路径',
