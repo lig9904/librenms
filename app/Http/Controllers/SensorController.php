@@ -87,7 +87,7 @@ class SensorController
         };
 
         return view($blade_view, [
-            'title' => __('Health') . ' :: ' . __('sensors.' . $metric . '.short'),
+            'title' => __('Health') . ' :: ' . $metrics[$metric]['text'],
             'metrics' => $metrics,
             'metric' => $metric,
             'views' => $views,
