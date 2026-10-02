@@ -5,7 +5,7 @@
 
     @config('login_message')
     <x-slot name="footer" class="text-center">
-        <div class="logon-message">{{ \App\Facades\LibrenmsConfig::get('login_message') }}</div>
+        <div class="logon-message">{{ __(\App\Facades\LibrenmsConfig::get('login_message')) }}</div>
     </x-slot>
     @endconfig
 
