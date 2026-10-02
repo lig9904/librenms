@@ -60,6 +60,18 @@
     <script src="{{ asset('js/bootstrap-datetimepicker.min.js?ver=05072021') }}"></script>
     <script src="{{ asset('js/mktree.js') }}"></script>
     <script src="{{ asset('js/jquery.bootgrid.min.js') }}"></script>
+    @if (app()->getLocale() === 'zh-CN')
+        <script>
+            Object.assign($.fn.bootgrid.Constructor.defaults.labels, {
+                all: @json(__('All')),
+                infos: @json(__('Showing {{ctx.start}} to {{ctx.end}} of {{ctx.total}} entries')),
+                loading: @json(__('Loading...')),
+                noResults: @json(__('No results found!')),
+                refresh: @json(__('Refresh')),
+                search: @json(__('Search')),
+            });
+        </script>
+    @endif
     <script src="{{ asset('js/handlebars.min.js') }}"></script>
     <script data-pace-options='{ "eventLag": { "lagThreshold": 30 } }' src="{{ asset('js/pace.min.js') }}"></script>
     <script src="{{ asset('js/qrcode.min.js') }}"></script>
